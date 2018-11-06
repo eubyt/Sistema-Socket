@@ -2,7 +2,11 @@ package org.projeto.servidor;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.projeto.Sistema;
 import org.projeto.cliente.util.ClienteDados;
@@ -36,11 +40,9 @@ public class Servidor extends ComunicarUtil {
             while (true) {
             	  
             	  ClienteDados dados = new ClienteDados(servidor.accept());
-            	  if (clientes.containsKey(dados.ip))
-            	  {
-            		  Console(clientes.get(dados.ip));
-            		  
-            	  } else {
+            	  
+            	  if (!clientes.containsKey(dados.ip))
+                  {
                 	  new Logger("Cliente <" + dados.ip  + "> está conectando!", tipo);
                 	  new Logger("Solicitando informações para o cliente <" + dados.ip + ">", tipo);
                 	  
@@ -48,6 +50,8 @@ public class Servidor extends ComunicarUtil {
                 	  clientes.put(dados.ip, dados);
             	  }
             	
+            	  
+            	  Console(dados);
          
             	  
             }
@@ -62,18 +66,34 @@ public class Servidor extends ComunicarUtil {
 	
 	private void Console(ClienteDados dados) {
 		try {
-			
+			ClienteDados cliente = clientes.get(dados.ip);
 			String mensagem = dados.ler.readUTF();
 			
-			if (dados.nome == null) {
-				dados.nome = mensagem;
-				dados.Enviar("Seja Bem-vindo, " + dados.nome, tipo);
+			if (cliente.nome == null) {
+				cliente.nome = mensagem;
+				dados.Enviar("Seja Bem-vindo, " + cliente.nome, tipo);
+				
+				  Iterator notificar = getClientes();
+				    
+				  
+	        	 while (notificar.hasNext()){
+	        		 
+	        		 Entry<String,ClienteDados> x = (Entry<String, ClienteDados>) notificar.next();
+	        		 
+	        		if (x.getValue().ip!= cliente.ip)
+            		   x.getValue().Enviar("O cliente <" +cliente.nome+ "> se conectou..", tipo);
+            	}
+	        	
 			}
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private Iterator getClientes() {
+		  Set<Entry<String,ClienteDados>> set = clientes.entrySet();
+		  return set.iterator();
 	}
 
 	

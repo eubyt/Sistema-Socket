@@ -47,6 +47,8 @@ public class Cliente extends ComunicarUtil {
 					String valor = console().nextLine();
 					dados.Enviar(valor, tipo);
 					dados.nome = valor;
+				} else {
+					new Logger("Digite o nome de arquivo que deseja baixar:", tipo);
 				}
 				
 				
