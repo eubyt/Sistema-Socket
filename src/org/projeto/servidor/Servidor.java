@@ -2,6 +2,7 @@ package org.projeto.servidor;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.HashMap;
 
 import org.projeto.Sistema;
 import org.projeto.cliente.util.ClienteDados;
@@ -14,6 +15,7 @@ public class Servidor extends ComunicarUtil {
 	private Sistema.Tipo tipo = Sistema.Tipo.SERVER;
 	private ServerSocket servidor;
 	
+	private HashMap<String,ClienteDados> clientes = new HashMap();
 	
 	@Override
 	public void Preparando(String ip, int porta) {
@@ -32,12 +34,21 @@ public class Servidor extends ComunicarUtil {
 		try {
 		
             while (true) {
+            	  
             	  ClienteDados dados = new ClienteDados(servidor.accept());
-            	  
-            	  new Logger("Cliente <" + dados.ip  + "> está conectando!", tipo);
-            	  new Logger("Solicitando informações para o cliente <" + dados.ip + ">", tipo);
-            	  
-            	  dados.Enviar("Por favor, nos informe como devemos chamar este cliente:", tipo);
+            	  if (clientes.containsKey(dados.ip))
+            	  {
+            		  Console(clientes.get(dados.ip));
+            		  
+            	  } else {
+                	  new Logger("Cliente <" + dados.ip  + "> está conectando!", tipo);
+                	  new Logger("Solicitando informações para o cliente <" + dados.ip + ">", tipo);
+                	  
+                	  dados.Enviar("Por favor, nos informe como devemos chamar este cliente:", tipo);
+                	  clientes.put(dados.ip, dados);
+            	  }
+            	
+         
             	  
             }
             
@@ -48,7 +59,25 @@ public class Servidor extends ComunicarUtil {
 
 	}
 
+	
+	private void Console(ClienteDados dados) {
+		try {
+			
+			String mensagem = dados.ler.readUTF();
+			
+			if (dados.nome == null) {
+				dados.nome = mensagem;
+				dados.Enviar("Seja Bem-vindo, " + dados.nome, tipo);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
+	
+	
 
 
 

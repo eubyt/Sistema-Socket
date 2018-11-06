@@ -1,3 +1,4 @@
+
 package org.projeto.cliente;
 
 import java.net.Socket;
@@ -46,7 +47,6 @@ public class Cliente extends ComunicarUtil {
 					String valor = console().nextLine();
 					dados.Enviar(valor, tipo);
 					dados.nome = valor;
-					return;
 				}
 				
 				

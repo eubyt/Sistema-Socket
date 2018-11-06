@@ -10,7 +10,7 @@ import org.projeto.importante.logger.Logger;
 
 public class ClienteDados {
 	
-	 private DataInputStream ler;
+	 public DataInputStream ler;
 	 private DataOutputStream enviar;
 	 public String ip;
 	 
@@ -47,7 +47,7 @@ public class ClienteDados {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			new Logger("<Servidor -> " +ip+ "> Mensagem (" +mensagem+ ") enviada com sucesso. ", tipo);
+			new Logger("<Local -> " +ip+ "> Mensagem (" +mensagem+ ") enviada com sucesso. ", tipo);
 		}
 	
 	}
