@@ -1,5 +1,7 @@
 package org.projeto;
 
+import java.util.Scanner;
+
 import org.projeto.cliente.Cliente;
 import org.projeto.importante.Comunicar;
 import org.projeto.servidor.Servidor;
@@ -10,9 +12,18 @@ public class Sistema {
 	 
 	
 	 public static void main(String[] args) {
-		 //Comunicar<Servidor> server = servidor();
-
-		 Comunicar<Cliente> cliente = cliente();
+		 Scanner s = new Scanner(System.in);
+		 
+		 System.out.println("Iniciar como um servidor? [S/N]"); 
+		 String escolha = s.nextLine();
+		 
+		 if (escolha.toLowerCase().equals("s")) {
+		     Comunicar<Servidor> server = servidor();
+		     System.out.println("Sistema iniciado como servidor.");
+		 } else {
+			 Comunicar<Cliente> cliente = cliente();
+			 System.out.println("Sistema iniciado como cliente.");
+		 }
 	 
 	 }
 	 
