@@ -31,4 +31,10 @@ public class Sistema {
 	 private static Comunicar<Cliente> cliente() {
 		 return new Comunicar<Cliente>(new Cliente());
 	 }
+	 
+	 
+	 public enum Tipo {
+		 SERVER,
+		 CLIENTE;
+	 }
 }

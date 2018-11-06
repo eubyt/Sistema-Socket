@@ -1,45 +1,50 @@
 package org.projeto.cliente;
 
-import java.io.DataInputStream;
-import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import org.projeto.Sistema;
+import org.projeto.cliente.util.ClienteDados;
+import org.projeto.importante.logger.Logger;
 import org.projeto.importante.util.ComunicarUtil;
 
 public class Cliente extends ComunicarUtil {
 
 	Socket cliente;
     Scanner teclado = new Scanner(System.in);
-    DataInputStream data = null;
-    
-    
+
+    ClienteDados dados;
+	private Sistema.Tipo tipo = Sistema.Tipo.CLIENTE;
+	
 	@Override
 	public void Preparando(String ip,int porta) {
 		try {
+			new Logger("Criando servidor cliente..", tipo);
 			cliente = new Socket(ip, porta);
-			System.out.println("O cliente se conectou ao servidor!");
-			
-			data = new DataInputStream(cliente.getInputStream());
-			
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+			dados = new ClienteDados(cliente);
+			new Logger("Servidor cliente criado com sucesso, conectado ao servidor principal<" +ip + ":" + porta +">", tipo);
+		
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
+	
     
 	@Override
 	public void Iniciar() {
 	
 		try {
+			
 			while (true) {
-				System.out.println("Remoto: " + data.readUTF());
-		        }
+				
+				dados.Receber(tipo);
+				//Definir Nome
+				if (dados.nome == null) {
+					String valor = new Scanner(System.in).nextLine();
+				}
+			}
 		        
 		       
 		} catch (Exception e) {
@@ -48,5 +53,7 @@ public class Cliente extends ComunicarUtil {
 		} 
 	 
 	}
+
+
 
 }

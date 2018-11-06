@@ -1,22 +1,26 @@
 package org.projeto.servidor;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.net.Socket;
 
+import org.projeto.Sistema;
+import org.projeto.cliente.util.ClienteDados;
+import org.projeto.importante.logger.Logger;
 import org.projeto.importante.util.ComunicarUtil;
 
 public class Servidor extends ComunicarUtil {
 
 	
+	private Sistema.Tipo tipo = Sistema.Tipo.SERVER;
 	private ServerSocket servidor;
+	
 	
 	@Override
 	public void Preparando(String ip, int porta) {
 		try {
+			new Logger("Servidor iniciado em " + ip +":"+ porta, tipo);
 			servidor = new ServerSocket(porta);
-			System.out.println("Servidor iniciou..");
+			new Logger("Servidor está aguardando as conexões..", tipo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -28,25 +32,29 @@ public class Servidor extends ComunicarUtil {
 		try {
 		
             while (true) {
-            	  Socket cliente = servidor.accept();
+            	  ClienteDados dados = new ClienteDados(servidor.accept());
             	  
-            	  DataOutputStream data = new DataOutputStream(cliente.getOutputStream());
-            	  data.writeUTF("Ola");
-            	  data.flush();
+            	  new Logger("Cliente <" + dados.ip  + "> está conectando!", tipo);
+            	  new Logger("Solicitando informações para o cliente <" + dados.ip + ">", tipo);
             	  
-                  System.out.println("Nova conexão com o cliente " +     
-                      cliente.getInetAddress().getHostAddress()
-                  );
+            	  dados.Enviar("Por favor, nos informa como devemos chamar este cliente:", tipo);
+            	  
+ 
+            	 
+                 
                   
 
             }
             
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
+
+
+
 
 
 }
