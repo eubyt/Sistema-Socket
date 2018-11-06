@@ -2,12 +2,8 @@ package org.projeto.servidor;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.List;
-import java.util.Scanner;
 
 import org.projeto.importante.util.ComunicarUtil;
 
@@ -15,10 +11,9 @@ public class Servidor extends ComunicarUtil {
 
 	
 	private ServerSocket servidor;
-	private List<PrintStream> clientes;
 	
 	@Override
-	public void Preparando(int porta) {
+	public void Preparando(String ip, int porta) {
 		try {
 			servidor = new ServerSocket(porta);
 			System.out.println("Servidor iniciou..");
