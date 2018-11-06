@@ -22,7 +22,7 @@ public class Cliente extends ComunicarUtil {
 			new Logger("Criando servidor cliente..", tipo);
 			cliente = new Socket(ip, porta);
 			dados = new ClienteDados(cliente);
-			new Logger("Servidor cliente criado com sucesso, conectado ao servidor principal<" +ip + ":" + porta +">", tipo);
+			new Logger("Servidor cliente criado com sucesso, conectado ao servidor principal <" +ip + ":" + porta +">", tipo);
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -41,17 +41,27 @@ public class Cliente extends ComunicarUtil {
 				
 				dados.Receber(tipo);
 				//Definir Nome
+				
 				if (dados.nome == null) {
-					String valor = new Scanner(System.in).nextLine();
+					String valor = console().nextLine();
+					dados.Enviar(valor, tipo);
+					dados.nome = valor;
+					return;
 				}
+				
+				
 			}
 		        
 		       
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	 
+	}
+
+
+	private Scanner console() {
+		return new Scanner(System.in);
 	}
 
 

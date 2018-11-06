@@ -37,13 +37,8 @@ public class Servidor extends ComunicarUtil {
             	  new Logger("Cliente <" + dados.ip  + "> está conectando!", tipo);
             	  new Logger("Solicitando informações para o cliente <" + dados.ip + ">", tipo);
             	  
-            	  dados.Enviar("Por favor, nos informa como devemos chamar este cliente:", tipo);
+            	  dados.Enviar("Por favor, nos informe como devemos chamar este cliente:", tipo);
             	  
- 
-            	 
-                 
-                  
-
             }
             
 		} catch (Exception e) {
