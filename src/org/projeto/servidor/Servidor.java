@@ -83,7 +83,9 @@ public class Servidor extends ComunicarUtil {
 	        		if (x.getValue().ip!= cliente.ip)
             		   x.getValue().Enviar("O cliente <" +cliente.nome+ "> se conectou..", tipo);
             	}
-	        	
+			} else {
+				String[] arquivo = mensagem.split(":");
+				new Logger("Cliente<" + cliente.nome + "> solicitou a procura do arquivo " + arquivo[1], tipo);
 			}
 			
 		} catch (Exception e) {

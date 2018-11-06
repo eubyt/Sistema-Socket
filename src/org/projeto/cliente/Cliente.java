@@ -49,16 +49,14 @@ public class Cliente extends ComunicarUtil {
 					dados.nome = valor;
 				} else {
 					new Logger("Digite o nome de arquivo que deseja baixar:", tipo);
+					String arquivo = console().nextLine();
+					new Logger("Solicitando busca sobre o arquivo <" + arquivo + "> em nossos cliente.. Aguarde", tipo);
+					dados.Enviar("Procurar:" + arquivo, tipo);
 				}
-				
-				
-			}
-		        
-		       
+			} 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-	 
 	}
 
 
