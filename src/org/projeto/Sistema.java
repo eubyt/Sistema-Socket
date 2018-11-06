@@ -7,22 +7,18 @@ import org.projeto.importante.Comunicar;
 import org.projeto.servidor.Servidor;
 
 public class Sistema {
-
 	
-	 
-	
-	 public static void main(String[] args) {
+	public static void main(String[] args) {
 		 Scanner s = new Scanner(System.in);
-		 
-		 System.out.println("Iniciar como um servidor? [S/N]"); 
+		 System.out.println("Deseja iniciar como servidor? [S/N]");
 		 String escolha = s.nextLine();
 		 
 		 if (escolha.toLowerCase().equals("s")) {
-		     Comunicar<Servidor> server = servidor();
 		     System.out.println("Sistema iniciado como servidor.");
+		     Comunicar<Servidor> server = servidor();
 		 } else {
-			 Comunicar<Cliente> cliente = cliente();
 			 System.out.println("Sistema iniciado como cliente.");
+			 Comunicar<Cliente> cliente = cliente();
 		 }
 	 
 	 }
