@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.projeto.cliente.Cliente;
 import org.projeto.importante.Comunicar;
 import org.projeto.servidor.Servidor;
+import org.projeto.servidor.ServidorTeste;
 
 public class Sistema {
 	
@@ -15,7 +16,7 @@ public class Sistema {
 		 
 		 if (escolha.toLowerCase().equals("s")) {
 		     System.out.println("Sistema iniciado como servidor.");
-		     Comunicar<Servidor> server = servidor();
+		     Comunicar<ServidorTeste> server = servidor();
 		 } else {
 			 System.out.println("Sistema iniciado como cliente.");
 			 Comunicar<Cliente> cliente = cliente();
@@ -24,8 +25,8 @@ public class Sistema {
 	 }
 	 
 	 
-	 private static Comunicar<Servidor> servidor() {
-		 return new Comunicar<Servidor>(new Servidor());
+	 private static Comunicar<ServidorTeste> servidor() {
+		 return new Comunicar<ServidorTeste>(new ServidorTeste());
 	 }
 	 
 	 private static Comunicar<Cliente> cliente() {
