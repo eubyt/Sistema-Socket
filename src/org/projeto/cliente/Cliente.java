@@ -46,13 +46,16 @@ public class Cliente extends ComunicarUtil {
 					c = conexoes.get(c.ip);
 				 else 
 					conexoes.put(c.ip, c);
-				
+
 				Thread t = new Thread(c.tratar());
 				t.start();
-
+				
 				if (c.nome == null) {
-					new Thread(c.Enviar(console().nextLine())).start();
+					c.nome = console().nextLine();
+					new Logger("Seja Bem-vindo, " + c.nome, tipo);
+					new Thread(c.Enviar(c.nome)).start();
 				} 
+				
 			} 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -76,17 +76,16 @@ public class ClienteDados {
 					
 					while (scan.hasNext()) {		
 						if (Sistema.Tipo.SERVER == tipo) {
-						    new Logger("Mensagem recebida do cliente <" +nome+ ">: "+scan.nextLine(), Sistema.Tipo.CLIENTE);
 						    
 							if (nome == null) {
 								nome = scan.nextLine();
-								new Thread(Enviar("Seja Bem-vindo," + nome)).start();
-							}   
+							}
+							
+						    new Logger("Mensagem recebida do cliente <" +nome+ ">: "+scan.nextLine(), Sistema.Tipo.CLIENTE);
 						}
-						
-						else
+						else {
 							new Logger(scan.nextLine(), Sistema.Tipo.SERVER);	
-
+						}
 					}
 					
 					scan.close();
