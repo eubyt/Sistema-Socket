@@ -47,14 +47,16 @@ public class Cliente extends ComunicarUtil {
 				 else 
 					conexoes.put(c.ip, c);
 
-				Thread t = new Thread(c.tratar());
-				t.start();
+				new Thread(c.tratar()).start();
 				
 				if (c.nome == null) {
 					c.nome = console().nextLine();
-					new Logger("Seja Bem-vindo, " + c.nome, tipo);
 					new Thread(c.Enviar(c.nome)).start();
-				} 
+					new Logger("Seja Bem-vindo, " + c.nome, tipo);
+					new Logger("Digite o nome do arquivo que deseja baixar:", tipo);
+				}  else {
+					String arquivo = console().nextLine();
+				}
 				
 			} 
 		} catch (Exception e) {

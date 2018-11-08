@@ -51,6 +51,7 @@ public class ServidorTeste extends ComunicarUtil {
 				} else {
 	            	new Logger("Solicitando informações para o cliente <" + c.ip + ">", tipo);
 					conexoes.put(c.ip, c);
+					
 					new Thread(c.Enviar("Por favor, nos informe como devemos chamar este cliente:")).start();
 				}
 				

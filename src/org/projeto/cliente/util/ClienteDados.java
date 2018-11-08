@@ -79,8 +79,9 @@ public class ClienteDados {
 						    
 							if (nome == null) {
 								nome = scan.nextLine();
+								System.out.println("Usuario cadastrado <" + nome + ">.");
 							}
-							
+	
 						    new Logger("Mensagem recebida do cliente <" +nome+ ">: "+scan.nextLine(), Sistema.Tipo.CLIENTE);
 						}
 						else {
@@ -90,8 +91,9 @@ public class ClienteDados {
 					
 					scan.close();
 					Fechar();
+					this.finalize();
 					
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					e.printStackTrace();
 				}
 			}
@@ -108,8 +110,10 @@ public class ClienteDados {
 					PrintStream msg = new PrintStream(socket.getOutputStream());
 					msg.println(mensagem);
 					new Logger("Mensagem enviada para <" +mensagem+">", tipo);
+					
+					this.finalize();
 				
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					e.printStackTrace();
 				}
 				
