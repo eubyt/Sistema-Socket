@@ -56,6 +56,7 @@ public class Cliente extends ComunicarUtil {
 					new Logger("Digite o nome do arquivo que deseja baixar:", tipo);
 				}  else {
 					String arquivo = console().nextLine();
+					new Thread(c.Enviar("Arquivo:" + arquivo)).start();
 				}
 				
 			} 

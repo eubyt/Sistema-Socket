@@ -8,12 +8,15 @@ import java.util.Scanner;
 
 import org.projeto.Sistema;
 import org.projeto.importante.logger.Logger;
+import org.projeto.servidor.Operador;
 
 public class ClienteDados {
 	
 	 public String ip;
 	 
-	 public String nome = null;
+	 public String nome, arquivo = null;
+	 
+	 
 	 public Socket socket;
 	 
 	 public Sistema.Tipo tipo;
@@ -76,13 +79,7 @@ public class ClienteDados {
 					
 					while (scan.hasNext()) {		
 						if (Sistema.Tipo.SERVER == tipo) {
-						    
-							if (nome == null) {
-								nome = scan.nextLine();
-								System.out.println("Usuario cadastrado <" + nome + ">.");
-							}
-	
-						    new Logger("Mensagem recebida do cliente <" +nome+ ">: "+scan.nextLine(), Sistema.Tipo.CLIENTE);
+							Operador(scan.nextLine().toLowerCase());
 						}
 						else {
 							new Logger(scan.nextLine(), Sistema.Tipo.SERVER);	
@@ -100,7 +97,11 @@ public class ClienteDados {
 		};
 	}
 	
+	private void Operador(String msg) {
+    new Operador(msg, this);
+}
 	
+
 	public Runnable Enviar(final String mensagem) {
 		return new Runnable() {
 
