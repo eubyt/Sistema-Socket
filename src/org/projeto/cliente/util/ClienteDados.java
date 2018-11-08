@@ -16,26 +16,29 @@ public class ClienteDados {
 	 public String nome = null;
 	 public Socket socket;
 	 
-	public ClienteDados(ServerSocket server) {
+	 public Sistema.Tipo tipo;
+	 
+	public ClienteDados(ServerSocket server, Sistema.Tipo tipo) {
 		try {
 			this.socket = server.accept();
-			Formatar();
+			Formatar(tipo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public ClienteDados(Socket server) {
+	public ClienteDados(Socket server, Sistema.Tipo tipo) {
 		try {
 			this.socket = server;
-			Formatar();
+			Formatar(tipo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private void Formatar() {
-		ip = socket.getInetAddress().getHostAddress() + ":" + socket.getPort();
+	private void Formatar(Sistema.Tipo tipo) {
+		ip = socket.getInetAddress().getHostAddress();
+		this.tipo = tipo;
 	}
 	
 	public void Fechar() {
@@ -67,13 +70,23 @@ public class ClienteDados {
 		return new Runnable() {
 			@Override
 			public void run() {
-				System.out.println("Nova conexao com o cliente " + socket.getInetAddress().getHostAddress());
 				
 				try {
 					Scanner scan = new Scanner(socket.getInputStream());
 					
-					while (scan.hasNext()) {
-						System.out.println("Mensagem: " + scan.nextLine());
+					while (scan.hasNext()) {		
+						if (Sistema.Tipo.SERVER == tipo) {
+						    new Logger("Mensagem recebida do cliente <" +nome+ ">: "+scan.nextLine(), Sistema.Tipo.CLIENTE);
+						    
+							if (nome == null) {
+								nome = scan.nextLine();
+								new Thread(Enviar("Seja Bem-vindo," + nome)).start();
+							}   
+						}
+						
+						else
+							new Logger(scan.nextLine(), Sistema.Tipo.SERVER);	
+
 					}
 					
 					scan.close();
@@ -95,7 +108,8 @@ public class ClienteDados {
 				try {
 					PrintStream msg = new PrintStream(socket.getOutputStream());
 					msg.println(mensagem);
-					
+					new Logger("Mensagem enviada para <" +mensagem+">", tipo);
+				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

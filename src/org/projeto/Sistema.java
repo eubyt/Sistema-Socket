@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import org.projeto.cliente.Cliente;
 import org.projeto.importante.Comunicar;
-import org.projeto.servidor.Servidor;
 import org.projeto.servidor.ServidorTeste;
 
 public class Sistema {

@@ -39,35 +39,20 @@ public class Cliente extends ComunicarUtil {
 
 		
 		try {
-			
 			while (true) {
 				
-				ClienteDados c = new ClienteDados(cliente);
+				ClienteDados c = new ClienteDados(cliente, tipo);
 				if (conexoes.containsKey(c.ip)) 
 					c = conexoes.get(c.ip);
 				 else 
 					conexoes.put(c.ip, c);
 				
-				String arquivo = console().nextLine();
-				Thread t = new Thread(c.Enviar(arquivo));
+				Thread t = new Thread(c.tratar());
 				t.start();
-				
-				
-				/*
-				dados.Receber(tipo);
-				//Definir Nome
-				
-				if (dados.nome == null) {
-					String valor = console().nextLine();
-					dados.Enviar(valor, tipo);
-					dados.nome = valor;
-				} else {
-					new Logger("Digite o nome de arquivo que deseja baixar:", tipo);
-					String arquivo = console().nextLine();
-					new Logger("Solicitando busca sobre o arquivo <" + arquivo + "> em nossos cliente.. Aguarde", tipo);
-					dados.Enviar("Procurar:" + arquivo, tipo);
-				}
-				*/
+
+				if (c.nome == null) {
+					new Thread(c.Enviar(console().nextLine())).start();
+				} 
 			} 
 		} catch (Exception e) {
 			e.printStackTrace();
