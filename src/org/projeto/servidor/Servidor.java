@@ -2,7 +2,6 @@ package org.projeto.servidor;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -36,11 +35,18 @@ public class Servidor extends ComunicarUtil {
 	@Override
 	public void Iniciar() {
 		try {
+			
+
+	        	 
 		
             while (true) {
-            	  
+            
             	  ClienteDados dados = new ClienteDados(servidor.accept());
+            	  dados.Receber(tipo);
+     
+            	  dados.enviar.close();
             	  
+            /*	  
             	  if (!clientes.containsKey(dados.ip))
                   {
                 	  new Logger("Cliente <" + dados.ip  + "> está conectando!", tipo);
@@ -49,11 +55,11 @@ public class Servidor extends ComunicarUtil {
                 	  dados.Enviar("Por favor, nos informe como devemos chamar este cliente:", tipo);
                 	  clientes.put(dados.ip, dados);
             	  }
-            	
             	  
-            	  Console(dados);
-         
-            	  
+            	  dados.Receber(tipo);
+            	  Console(dados, dados.ler.readUTF());
+            	  */
+
             }
             
 		} catch (Exception e) {
@@ -62,12 +68,13 @@ public class Servidor extends ComunicarUtil {
 		}
 
 	}
+	
+
 
 	
-	private void Console(ClienteDados dados) {
+	private void Console(ClienteDados dados, String mensagem) {
 		try {
 			ClienteDados cliente = clientes.get(dados.ip);
-			String mensagem = dados.ler.readUTF();
 			
 			if (cliente.nome == null) {
 				cliente.nome = mensagem;
@@ -83,10 +90,11 @@ public class Servidor extends ComunicarUtil {
 	        		if (x.getValue().ip!= cliente.ip)
             		   x.getValue().Enviar("O cliente <" +cliente.nome+ "> se conectou..", tipo);
             	}
-			} else {
-				String[] arquivo = mensagem.split(":");
-				new Logger("Cliente<" + cliente.nome + "> solicitou a procura do arquivo " + arquivo[1], tipo);
 			}
+			
+			System.out.println("GGGG");
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -4,24 +4,24 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Scanner;
 
 import org.projeto.Sistema;
 import org.projeto.importante.logger.Logger;
 
 public class ClienteDados {
 	
-	 public DataInputStream ler;
-	 private DataOutputStream enviar;
+	 public DataOutputStream enviar;
 	 public String ip;
 	 
 	 public String nome = null;
-	 
+	 public Socket socket;
 	 
 	public ClienteDados(Socket socket) {
 		try {
 			ip = socket.getInetAddress().getHostAddress() + ":" + socket.getPort();
-			ler = new DataInputStream(socket.getInputStream());
 			enviar = new DataOutputStream(socket.getOutputStream());
+			this.socket = socket;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -29,14 +29,34 @@ public class ClienteDados {
 	
 	
 	
-	public String Receber(Sistema.Tipo tipo) {
-		try {
-			return new Logger(ler.readUTF().toString(), tipo).toString();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public void Receber(Sistema.Tipo tipo) {
+
+
+	}
+	
+	
+	
+	public Runnable tratar() {
+		return new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("Nova conexao com o cliente " + socket.getInetAddress().getHostAddress());
+				
+				try {
+					Scanner scan = new Scanner(socket.getInputStream());
+					
+					while (scan.hasNext()) {
+						System.out.println("Mensagem: " + scan.nextLine());
+					}
+					
+					scan.close();
+					socket.close();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		};
 	}
 	
 	public void Enviar(String mensagem, Sistema.Tipo tipo) {

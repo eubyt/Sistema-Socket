@@ -39,7 +39,9 @@ public class Cliente extends ComunicarUtil {
 		try {
 			
 			while (true) {
-				
+				String arquivo = console().nextLine();
+				dados.Enviar(arquivo, tipo);
+				/*
 				dados.Receber(tipo);
 				//Definir Nome
 				
@@ -53,6 +55,7 @@ public class Cliente extends ComunicarUtil {
 					new Logger("Solicitando busca sobre o arquivo <" + arquivo + "> em nossos cliente.. Aguarde", tipo);
 					dados.Enviar("Procurar:" + arquivo, tipo);
 				}
+				*/
 			} 
 		} catch (Exception e) {
 			e.printStackTrace();
