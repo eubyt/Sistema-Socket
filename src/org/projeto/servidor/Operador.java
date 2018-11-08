@@ -1,5 +1,7 @@
 package org.projeto.servidor;
 
+import java.io.File;
+
 import org.projeto.Sistema;
 import org.projeto.cliente.util.ClienteDados;
 import org.projeto.importante.logger.Logger;
@@ -19,6 +21,7 @@ public class Operador {
 			if (variavel[0].equals("arquivo")) {
 				 dados.arquivo = variavel[1];
 				 new Logger("Arquivo solicitado <" + dados.arquivo + "> pelo cliente <" + dados.nome + ">.", dados.tipo);
+				 CheckArquivo(dados.arquivo, dados);
 			}
 		}
 		
@@ -26,4 +29,10 @@ public class Operador {
 		
 	}
 
+	
+	private void CheckArquivo(String nome, ClienteDados dados) {
+		if (!(new File("servidor/arquivos/" + nome)).exists()) {
+			new Thread(dados.Enviar("Nenhum arquivo localizado no diretorio servidor/arquivos/"+nome)).start();
+		}
+	}
 }
