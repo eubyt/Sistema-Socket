@@ -3,6 +3,7 @@ package org.projeto.servidor;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
 
 import org.projeto.cliente.util.ClienteDados;
 import org.projeto.importante.util.ComunicarUtil;
@@ -10,7 +11,8 @@ import org.projeto.importante.util.ComunicarUtil;
 public class ServidorTeste extends ComunicarUtil {
 
 	private ServerSocket servidor = null;
-
+	
+	public HashMap<String, ClienteDados> conexoes = new HashMap<String, ClienteDados>();
 	
 	
 	@Override
@@ -30,8 +32,16 @@ public class ServidorTeste extends ComunicarUtil {
 		System.out.println("Aguardando conexão do cliente...");   
 		while (true) {
 			try {
-				Socket cliente = servidor.accept();
-				ClienteDados c = new ClienteDados(cliente);
+				ClienteDados c = new ClienteDados(servidor);
+				if (conexoes.containsKey(c.ip)) {
+					c.Fechar();
+					conexoes.get(c.ip).Reabrir(servidor);
+					c = conexoes.get(c.ip);
+				} else 
+					conexoes.put(c.ip, c);
+				
+				
+				
 				Thread t = new Thread(c.tratar());
 				t.start();
 			} catch (Exception e) {

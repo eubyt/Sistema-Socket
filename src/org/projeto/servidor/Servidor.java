@@ -2,6 +2,7 @@ package org.projeto.servidor;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -40,11 +41,9 @@ public class Servidor extends ComunicarUtil {
 	        	 
 		
             while (true) {
-            
-            	  ClienteDados dados = new ClienteDados(servidor.accept());
-            	  dados.Receber(tipo);
+            	
      
-            	  dados.enviar.close();
+            	  
             	  
             /*	  
             	  if (!clientes.containsKey(dados.ip))
@@ -78,7 +77,7 @@ public class Servidor extends ComunicarUtil {
 			
 			if (cliente.nome == null) {
 				cliente.nome = mensagem;
-				dados.Enviar("Seja Bem-vindo, " + cliente.nome, tipo);
+				dados.Enviar("Seja Bem-vindo, " + cliente.nome);
 				
 				  Iterator notificar = getClientes();
 				    
@@ -88,7 +87,7 @@ public class Servidor extends ComunicarUtil {
 	        		 Entry<String,ClienteDados> x = (Entry<String, ClienteDados>) notificar.next();
 	        		 
 	        		if (x.getValue().ip!= cliente.ip)
-            		   x.getValue().Enviar("O cliente <" +cliente.nome+ "> se conectou..", tipo);
+            		   x.getValue().Enviar("O cliente <" +cliente.nome+ "> se conectou..");
             	}
 			}
 			

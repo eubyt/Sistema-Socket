@@ -2,6 +2,7 @@
 package org.projeto.cliente;
 
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import org.projeto.Sistema;
@@ -13,8 +14,9 @@ public class Cliente extends ComunicarUtil {
 
 	Socket cliente;
     Scanner teclado = new Scanner(System.in);
-
-    ClienteDados dados;
+    
+    public HashMap<String, ClienteDados> conexoes = new HashMap<String, ClienteDados>();
+    
 	private Sistema.Tipo tipo = Sistema.Tipo.CLIENTE;
 	
 	@Override
@@ -22,7 +24,6 @@ public class Cliente extends ComunicarUtil {
 		try {
 			new Logger("Criando servidor cliente..", tipo);
 			cliente = new Socket(ip, porta);
-			dados = new ClienteDados(cliente);
 			new Logger("Servidor cliente criado com sucesso, conectado ao servidor principal <" +ip + ":" + porta +">", tipo);
 		
 		} catch (Exception e) {
@@ -35,12 +36,23 @@ public class Cliente extends ComunicarUtil {
     
 	@Override
 	public void Iniciar() {
-	
+
+		
 		try {
 			
 			while (true) {
+				
+				ClienteDados c = new ClienteDados(cliente);
+				if (conexoes.containsKey(c.ip)) 
+					c = conexoes.get(c.ip);
+				 else 
+					conexoes.put(c.ip, c);
+				
 				String arquivo = console().nextLine();
-				dados.Enviar(arquivo, tipo);
+				Thread t = new Thread(c.Enviar(arquivo));
+				t.start();
+				
+				
 				/*
 				dados.Receber(tipo);
 				//Definir Nome

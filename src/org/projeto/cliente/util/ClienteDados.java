@@ -1,8 +1,8 @@
 package org.projeto.cliente.util;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -11,30 +11,57 @@ import org.projeto.importante.logger.Logger;
 
 public class ClienteDados {
 	
-	 public DataOutputStream enviar;
 	 public String ip;
 	 
 	 public String nome = null;
 	 public Socket socket;
 	 
-	public ClienteDados(Socket socket) {
+	public ClienteDados(ServerSocket server) {
 		try {
-			ip = socket.getInetAddress().getHostAddress() + ":" + socket.getPort();
-			enviar = new DataOutputStream(socket.getOutputStream());
-			this.socket = socket;
+			this.socket = server.accept();
+			Formatar();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public ClienteDados(Socket server) {
+		try {
+			this.socket = server;
+			Formatar();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void Formatar() {
+		ip = socket.getInetAddress().getHostAddress() + ":" + socket.getPort();
+	}
+	
+	public void Fechar() {
+		try {
+			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	
-	
-	public void Receber(Sistema.Tipo tipo) {
-
-
+	public void Reabrir(Socket server) {
+		try {
+			this.socket = server;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	
+	public void Reabrir(ServerSocket server) {
+		try {
+			this.socket = server.accept();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public Runnable tratar() {
 		return new Runnable() {
@@ -50,7 +77,7 @@ public class ClienteDados {
 					}
 					
 					scan.close();
-					socket.close();
+					Fechar();
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,18 +86,28 @@ public class ClienteDados {
 		};
 	}
 	
-	public void Enviar(String mensagem, Sistema.Tipo tipo) {
-		
-		try {
-			enviar.writeUTF(mensagem);
-			enviar.flush();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			new Logger("<Local -> " +ip+ "> Mensagem (" +mensagem+ ") enviada com sucesso. ", tipo);
-		}
 	
+	public Runnable Enviar(final String mensagem) {
+		return new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					PrintStream msg = new PrintStream(socket.getOutputStream());
+					msg.println(mensagem);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+			
+		};
+		
+		
+		
 	}
+
 	
 
 
