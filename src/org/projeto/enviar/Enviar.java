@@ -16,9 +16,8 @@ public class Enviar {
 
 
 	private String mensagem; //mensagem a ser enviada
-	private boolean fechar; //fechar a conex„o do socket
-	private Socket socket; //destino 
-	
+	private boolean fechar; //fechar a conex√£o do socket
+	private Socket socket; //destino
 	
 	//Setar valores
 	private void enviar(String mensagem, Socket socket, Boolean fechar) {
@@ -30,15 +29,28 @@ public class Enviar {
 	
 	public void Executar() {
 		try {
+			System.out.println("Enviando msg....");
 			PrintStream msg = new PrintStream(socket.getOutputStream()); //Preparar socket para enviar a mensagem
 			msg.println(mensagem); //Setando e enviando a mensagem
 			if (fechar)
-				msg.close(); //Fechar conex„o
+				msg.close(); //Fechar conex√£o
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+
+	public void Executar_Arquivo() {
+		try {
+			System.out.println("Enviando msg....");
+			PrintStream msg = new PrintStream(socket.getOutputStream()); //Preparar socket para enviar a mensagem
+			msg.println(mensagem); //Setando e enviando a mensagem
+			if (fechar)
+				msg.close(); //Fechar conex√£o
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	
 }

@@ -25,7 +25,7 @@ public class Servidor implements EstruturaThreads{
 	
 
 	
-	//Este È um Thread somente para receber as mensagens
+	//Este √© um Thread somente para receber as mensagens
 	@Override
 	public Runnable Receber() {
 		return new Runnable() {
@@ -35,9 +35,9 @@ public class Servidor implements EstruturaThreads{
 				while(true) {
 					try {						
 						 Socket cliente = servidor.accept();
-						 new Sistema.Logger("Conex„o recebida <"+cliente.getInetAddress().getHostAddress() + ">...");
+						 new Sistema.Logger("Conex√£o recebida <"+cliente.getInetAddress().getHostAddress() + ">...");
 						 EnviarUtil.Adicionar(new org.projeto.enviar.Enviar("Conectado com sucesso...", cliente, false));
-						 Scanner socket = new Scanner(cliente.getInputStream()); //Aceitar conex„o e capturar o valor de entrada
+						 Scanner socket = new Scanner(cliente.getInputStream()); //Aceitar conex√£o e capturar o valor de entrada
 						 while(socket.hasNextLine()){
 							   String mensagem = socket.nextLine();
 							   new Sistema.Logger("[CLIENTE - " + cliente.getInetAddress().getHostAddress() + "] " + mensagem); //Imprimir o resultado
@@ -55,7 +55,7 @@ public class Servidor implements EstruturaThreads{
 		};
 	}
 
-	//Este È um Thread somente para enviar as mensagens
+	//Este √© um Thread somente para enviar as mensagens
 	@Override
 	public Runnable Enviar() {
 		return new Runnable() {

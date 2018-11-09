@@ -1,3 +1,3 @@
 @echo off
-java -jar teste.jar
+java -jar ./out/artifacts/Luiz/Luiz.jar
 pause

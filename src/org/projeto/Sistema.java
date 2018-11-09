@@ -1,5 +1,6 @@
 package org.projeto;
 
+import java.io.File;
 import java.util.Scanner;
 
 import org.projeto.cliente.Cliente;
@@ -14,18 +15,22 @@ public class Sistema {
 	
 	public static void main(String[] args) {
 		
-		 //Capturar a opÁ„o digitada no console
+		 //Capturar a op√ß√£o digitada no console
 		 Scanner s = new Scanner(System.in);
 		 
 		 //Mensagens de inicio
-		 new Logger("Seja Bem-vindo, este È um simulador de Servidor-Cliente [Vers„o " + versao + "]");
+		 new Logger("Seja Bem-vindo, este √© um simulador de Servidor-Cliente [Vers√£o " + versao + "]");
 		 new Logger("Deseja iniciar este projeto como um servidor? [S/N]");
 		 new Logger("[S] - Projeto vai ser iniciado como um servidor.");
 		 new Logger("[N] - Projeto vai ser iniciado como um cliente");
 		 
 		 //Capturar a escolha, 
 		 ThreadsProjeto<EstruturaThreads> carregar = load(s.nextLine());
-	
+
+		 //Criar diretorios
+		new File("servidor").mkdirs();
+		new File("clientes").mkdirs();
+
 		 //Iniciar o objeto
 		 carregar.iniciar();
 		 

@@ -18,7 +18,7 @@ public class Cliente implements EstruturaThreads{
 		
 		try {
 			servidor = new Socket("127.0.0.1", 123);
-			EnviarUtil.Adicionar(new org.projeto.enviar.Enviar("Testando conex„o..", servidor, false));
+			EnviarUtil.Adicionar(new org.projeto.enviar.Enviar("Testando conex√£o..", servidor, false));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -27,7 +27,7 @@ public class Cliente implements EstruturaThreads{
 		
 	}
 	
-	//Este È um Thread somente para receber as mensagens
+	//Este √© um Thread somente para receber as mensagens
 		@Override
 		public Runnable Receber() {
 			return new Runnable() {
@@ -37,10 +37,14 @@ public class Cliente implements EstruturaThreads{
 					 
 					while(true) {
 						 
-						 try {							
-							Scanner socket = new Scanner(servidor.getInputStream()); //Aceitar conex„o e capturar o valor de entrada
-							 while(socket.hasNextLine()){
-								   PreparandoCliente.Preparar(socket, servidor);
+						 try {
+							 if (PreparandoCliente.ArquivoExiste) {
+								 PreparandoCliente.BaixarArquivo(servidor);
+							 } else {
+								 Scanner socket = new Scanner(servidor.getInputStream()); //Aceitar conex√£o e capturar o valor de entrada
+								 while (socket.hasNextLine()) {
+									 PreparandoCliente.Preparar(socket, servidor);
+								 }
 							 }
 						
 							 
@@ -56,7 +60,7 @@ public class Cliente implements EstruturaThreads{
 			};
 		}
 
-		//Este È um Thread somente para enviar as mensagens
+		//Este √© um Thread somente para enviar as mensagens
 		@Override
 		public Runnable Enviar() {
 			return new Runnable() {
