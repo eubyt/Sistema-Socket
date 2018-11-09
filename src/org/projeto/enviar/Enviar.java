@@ -15,10 +15,12 @@ public class Enviar {
 	}
 
 
-	private String mensagem;
-	private boolean fechar;
-	private Socket socket;
+	private String mensagem; //mensagem a ser enviada
+	private boolean fechar; //fechar a conexão do socket
+	private Socket socket; //destino 
 	
+	
+	//Setar valores
 	private void enviar(String mensagem, Socket socket, Boolean fechar) {
 		this.mensagem = mensagem;
 		this.socket = socket;
@@ -28,10 +30,10 @@ public class Enviar {
 	
 	public void Executar() {
 		try {
-			PrintStream msg = new PrintStream(socket.getOutputStream());
-			msg.println(mensagem);
+			PrintStream msg = new PrintStream(socket.getOutputStream()); //Preparar socket para enviar a mensagem
+			msg.println(mensagem); //Setando e enviando a mensagem
 			if (fechar)
-				msg.close();
+				msg.close(); //Fechar conexão
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -2,6 +2,8 @@ package org.projeto;
 
 import java.util.Scanner;
 
+import org.projeto.cliente.Cliente;
+import org.projeto.servidor.Servidor;
 import org.projeto.threads.ThreadsProjeto;
 import org.projeto.threads.estrutura.EstruturaThreads;
 
@@ -36,9 +38,9 @@ public class Sistema {
 	
 	private static ThreadsProjeto<EstruturaThreads> load(String escolha) {
 		if (escolha.equals("s"))
-		    return null; //Retornar a class do processo de servidor
+		    return new ThreadsProjeto<EstruturaThreads>(new Servidor());
 		else
-			return null; //Retornar a class do processo de Cliente
+			return new ThreadsProjeto<EstruturaThreads>(new Cliente()); //Retornar a class do processo de Cliente
 	}
 	
 	
