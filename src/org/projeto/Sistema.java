@@ -2,36 +2,55 @@ package org.projeto;
 
 import java.util.Scanner;
 
-import org.projeto.cliente.Cliente;
-import org.projeto.importante.Comunicar;
-import org.projeto.servidor.ServidorTeste;
+import org.projeto.threads.ThreadsProjeto;
+import org.projeto.threads.estrutura.EstruturaThreads;
+
 
 public class Sistema {
 	
+	private static String versao = "0.8.5";
+	
 	public static void main(String[] args) {
+		
+		 //Capturar a opção digitada no console
 		 Scanner s = new Scanner(System.in);
-		 System.out.println("Deseja iniciar como servidor? [S/N]");
-		 String escolha = s.nextLine();
 		 
-		 if (escolha.toLowerCase().equals("s")) {
-		     System.out.println("Sistema iniciado como servidor.");
-		     Comunicar<ServidorTeste> server = servidor();
-		 } else {
-			 System.out.println("Sistema iniciado como cliente.");
-			 Comunicar<Cliente> cliente = cliente();
-		 }
+		 //Mensagens de inicio
+		 new Logger("Seja Bem-vindo, este é um simulador de Servidor-Cliente [Versão " + versao + "]");
+		 new Logger("Deseja iniciar este projeto como um servidor? [S/N]");
+		 new Logger("[S] - Projeto vai ser iniciado como um servidor.");
+		 new Logger("[N] - Projeto vai ser iniciado como um cliente");
+		 
+		 //Capturar a escolha, 
+		 ThreadsProjeto<EstruturaThreads> carregar = load(s.nextLine());
+	
+		 //Iniciar o objeto
+		 carregar.iniciar();
+		 
+		 //Fechar o scanner
+		 s.close();
+		 
 	 
 	 }
-	 
-	 
-	 private static Comunicar<ServidorTeste> servidor() {
-		 return new Comunicar<ServidorTeste>(new ServidorTeste());
-	 }
-	 
-	 private static Comunicar<Cliente> cliente() {
-		 return new Comunicar<Cliente>(new Cliente());
-	 }
-	 
+	
+	
+	private static ThreadsProjeto<EstruturaThreads> load(String escolha) {
+		if (escolha.equals("s"))
+		    return null; //Retornar a class do processo de servidor
+		else
+			return null; //Retornar a class do processo de Cliente
+	}
+	
+	
+	public static class Logger {
+		
+		public Logger(String mensagem) {
+			//Imprimir no Console as msg
+			System.out.println("[PROJETO] " + mensagem);
+		}
+		
+	}
+
 	 
 	 public enum Tipo {
 		 SERVER,
