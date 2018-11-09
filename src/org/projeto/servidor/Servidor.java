@@ -33,11 +33,10 @@ public class Servidor implements EstruturaThreads{
 			@Override
 			public void run() {
 				while(true) {
-					System.out.println("Escutando...");
 					try {						
 						 Socket cliente = servidor.accept();
 						 new Sistema.Logger("Conexão recebida <"+cliente.getInetAddress().getHostAddress() + ">...");
-						 EnviarUtil.Adicionar(new org.projeto.enviar.Enviar("Conectado com sucesso...", cliente));
+						 EnviarUtil.Adicionar(new org.projeto.enviar.Enviar("Conectado com sucesso...", cliente, false));
 						 Scanner socket = new Scanner(cliente.getInputStream()); //Aceitar conexão e capturar o valor de entrada
 						 while(socket.hasNextLine()){
 							   String mensagem = socket.nextLine();

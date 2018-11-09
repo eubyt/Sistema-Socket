@@ -57,6 +57,7 @@ public class PreparandoCliente {
 	        public void actionPerformed(ActionEvent e) {
 	            if (Digitar.getText() != "") {
 	            	SelecionarArquivo(Digitar.getText(), servidor);
+	            	janela.dispose();
 	            }
 	        }
 	    });

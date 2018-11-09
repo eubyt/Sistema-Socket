@@ -32,7 +32,6 @@ public class Enviar {
 		try {
 			PrintStream msg = new PrintStream(socket.getOutputStream()); //Preparar socket para enviar a mensagem
 			msg.println(mensagem); //Setando e enviando a mensagem
-			System.out.println("Mensagem enviada...");
 			if (fechar)
 				msg.close(); //Fechar conexão
 		} catch (IOException e) {
