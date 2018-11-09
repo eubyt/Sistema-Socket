@@ -38,13 +38,10 @@ public class Cliente implements EstruturaThreads{
 					while(true) {
 						 
 						 try {
-							 if (PreparandoCliente.ArquivoExiste) {
-								 PreparandoCliente.BaixarArquivo(servidor);
-							 } else {
+
 								 Scanner socket = new Scanner(servidor.getInputStream()); //Aceitar conexão e capturar o valor de entrada
 								 while (socket.hasNextLine()) {
 									 PreparandoCliente.Preparar(socket, servidor);
-								 }
 							 }
 						
 							 

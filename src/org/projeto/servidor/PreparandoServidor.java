@@ -28,23 +28,28 @@ public class PreparandoServidor {
 			if (!consultar.exists())
 				EnviarUtil.Adicionar(new Enviar("O arquivo " + arquivo + " nao existe...", socket));
 				else  {
-				EnviarUtil.Adicionar(new Enviar("O arquivo " + arquivo + " foi localizado, iniciando download..", socket));
-				EnviarArquivo(arquivo, socket);
+				EnviarUtil.Adicionar(new Enviar("O arquivo " + arquivo + " foi localizado, iniciando download..", socket, false));
+				try {
+					Thread.sleep(550);
+					EnviarArquivo(arquivo, socket);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
 			}
 	}
 
 
 	private static void EnviarArquivo(String arquivo, Socket socket) {
 		try {
-			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 			FileInputStream file = new FileInputStream("servidor/" + arquivo);
-
+			System.out.println("Enviando arquivo...");
 			byte[] buf = new byte[4096];
 
 			while(true){
 				int len = file.read(buf);
 				if(len == -1) break;
-				out.write(buf, 0, len);
+				EnviarUtil.Adicionar(new Enviar("" + len, socket, false));
 			}
 
 		} catch (IOException e) {

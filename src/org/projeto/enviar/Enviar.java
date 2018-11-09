@@ -29,20 +29,6 @@ public class Enviar {
 	
 	public void Executar() {
 		try {
-			System.out.println("Enviando msg....");
-			PrintStream msg = new PrintStream(socket.getOutputStream()); //Preparar socket para enviar a mensagem
-			msg.println(mensagem); //Setando e enviando a mensagem
-			if (fechar)
-				msg.close(); //Fechar conexão
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-
-	public void Executar_Arquivo() {
-		try {
-			System.out.println("Enviando msg....");
 			PrintStream msg = new PrintStream(socket.getOutputStream()); //Preparar socket para enviar a mensagem
 			msg.println(mensagem); //Setando e enviando a mensagem
 			if (fechar)

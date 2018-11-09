@@ -24,34 +24,37 @@ public class PreparandoCliente {
 	public static void Preparar(Scanner msg, Socket servidor) {
 		if (!DigitarArquivo)
 		  SolicitarArquivo(servidor);
+
+		if (ArquivoExiste) {
+			PreparandoCliente.BaixarArquivo(msg,servidor);
+		}
+		else
 		if (ArquivoSelecionado) {
 			String msg_string = msg.nextLine();
 			new Sistema.Logger("[SERVIDOR] " + msg_string);
 
 			if (msg_string.contains("foi localizado"))
 				ArquivoExiste = true;
-
 			}
 	}
 
 
-	public static void BaixarArquivo(Socket servidor) {
+	public static void BaixarArquivo(Scanner msg,Socket servidor) {
 		try {
-			DataInputStream out = new DataInputStream(servidor.getInputStream());
-			FileOutputStream file = new FileOutputStream("clientes/" + Arquivo);
 
+			OutputStream file = new FileOutputStream("clientes/" + Arquivo);
+			System.out.println("Chegou aqui");
 			byte[] buf = new byte[4096];
 
 			while(true) {
-				int len = out.read(buf);
+				int len = msg.nextInt();
 				if(len == -1) break;
-				file.write(buf, 0, len);
+				System.out.println(len);
+				file.write(len);
 			}
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		} finally {
-			new Sistema.Logger("Arquivo baixado com sucesso em clientes/" + Arquivo);
 		}
 	}
 	
