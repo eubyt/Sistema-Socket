@@ -41,6 +41,7 @@ public class Servidor implements EstruturaThreads{
 						 while(socket.hasNextLine()){
 							   String mensagem = socket.nextLine();
 							   new Sistema.Logger("[CLIENTE - " + cliente.getInetAddress().getHostAddress() + "] " + mensagem); //Imprimir o resultado
+							   PreparandoServidor.Comandos(mensagem, cliente);
 						 }
 						 
 					} catch (Exception e) {
