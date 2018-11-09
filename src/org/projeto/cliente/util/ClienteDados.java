@@ -69,7 +69,12 @@ public class ClienteDados {
 		}
 	}
 	
-	public Runnable tratar() {
+	
+	public void tratar() {
+		new Thread(Receber()).start();
+	}
+	
+	private Runnable Receber() {
 		return new Runnable() {
 			@Override
 			public void run() {

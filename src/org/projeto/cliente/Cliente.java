@@ -46,8 +46,8 @@ public class Cliente extends ComunicarUtil {
 					c = conexoes.get(c.ip);
 				 else 
 					conexoes.put(c.ip, c);
-
-				new Thread(c.tratar()).start();
+				
+				c.tratar();
 				
 				if (c.nome == null) {
 					c.nome = console().nextLine();

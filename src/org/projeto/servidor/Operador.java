@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.projeto.Sistema;
 import org.projeto.cliente.util.ClienteDados;
+import org.projeto.importante.Tarefas;
 import org.projeto.importante.logger.Logger;
 
 public class Operador {
@@ -26,13 +27,17 @@ public class Operador {
 		}
 		
 		new Logger("Mensagem recebida do cliente <" +dados.nome+ ">: "+ mensagem, Sistema.Tipo.CLIENTE);
-		
+		Tarefas.Executar();
 	}
 
 	
 	private void CheckArquivo(String nome, ClienteDados dados) {
-		if (!(new File("servidor/arquivos/" + nome)).exists()) {
-			new Thread(dados.Enviar("Nenhum arquivo localizado no diretorio servidor/arquivos/"+nome)).start();
-		}
+		Tarefas.Adicionar(new Tarefas.Criar() {
+			@Override
+			public void Executar() {
+				new Thread(dados.Enviar("Testando conexão..")).start();;
+                if (!(new File("servidor/arquivos/" + nome)).exists()) new Thread(dados.Enviar("Nenhum arquivo localizado no diretorio servidor/arquivos/"+nome)).start();
+			}
+		});
 	}
 }

@@ -38,6 +38,7 @@ public class ServidorTeste extends ComunicarUtil {
 	public void Iniciar() {
 
 		while (true) {
+			
 			try {
 				
 				ClienteDados c = new ClienteDados(servidor, tipo);
@@ -55,7 +56,7 @@ public class ServidorTeste extends ComunicarUtil {
 					new Thread(c.Enviar("Por favor, nos informe como devemos chamar este cliente:")).start();
 				}
 				
-				new Thread(c.tratar()).start();
+			c.tratar();
 				
 			} catch (Exception e) {
 			
