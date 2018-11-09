@@ -6,7 +6,6 @@ import java.net.UnknownHostException;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import org.projeto.Sistema;
 import org.projeto.enviar.EnviarUtil;
 import org.projeto.threads.estrutura.EstruturaThreads;
 
@@ -20,12 +19,9 @@ public class Cliente implements EstruturaThreads{
 		try {
 			servidor = new Socket("127.0.0.1", 123);
 			EnviarUtil.Adicionar(new org.projeto.enviar.Enviar("Testando conexão..", servidor, false));
-
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -38,12 +34,17 @@ public class Cliente implements EstruturaThreads{
 
 				@Override
 				public void run() {
+					 
 					while(true) {
-						try {						
-							 Scanner socket = new Scanner(servidor.getInputStream()); //Aceitar conexão e capturar o valor de entrada
+						 
+						 try {							
+							Scanner socket = new Scanner(servidor.getInputStream()); //Aceitar conexão e capturar o valor de entrada
 							 while(socket.hasNextLine()){
-								   new Sistema.Logger("[SERVIDOR] " + socket.nextLine()); //Imprimir o resultado
+								   PreparandoCliente.Preparar(socket, servidor);
 							 }
+						
+							 
+							 
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -60,10 +61,9 @@ public class Cliente implements EstruturaThreads{
 		public Runnable Enviar() {
 			return new Runnable() {
 
-				int contar = 0;
 				@Override
 				public void run() {
-					
+					while (true) {
 					Iterator<org.projeto.enviar.Enviar> lista = EnviarUtil.enviar().iterator(); //Carregando ArrayList de mensagens
 	
 					while(lista.hasNext()) {
@@ -71,7 +71,8 @@ public class Cliente implements EstruturaThreads{
 					}
 					
 					EnviarUtil.enviar().clear(); //Limpando Array
-					
+					  try {	Thread.sleep(500); } catch (InterruptedException e) { } //Ter delay para executar este Thread
+					}
 				}
 				
 			};

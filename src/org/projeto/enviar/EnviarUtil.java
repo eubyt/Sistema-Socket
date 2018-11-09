@@ -2,8 +2,6 @@ package org.projeto.enviar;
 
 import java.util.ArrayList;
 
-import org.projeto.Sistema;
-
 public class EnviarUtil {
 
 	//ArrayList com mensagens a ser enviada

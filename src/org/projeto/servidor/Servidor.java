@@ -33,6 +33,7 @@ public class Servidor implements EstruturaThreads{
 			@Override
 			public void run() {
 				while(true) {
+					System.out.println("Escutando...");
 					try {						
 						 Socket cliente = servidor.accept();
 						 new Sistema.Logger("Conexão recebida <"+cliente.getInetAddress().getHostAddress() + ">...");
@@ -42,7 +43,7 @@ public class Servidor implements EstruturaThreads{
 							   String mensagem = socket.nextLine();
 							   new Sistema.Logger("[CLIENTE - " + cliente.getInetAddress().getHostAddress() + "] " + mensagem); //Imprimir o resultado
 						 }
-						 socket.close();
+						 
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
