@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.Socket;
 import java.util.Base64;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -21,7 +23,7 @@ public class PreparandoCliente {
 
 	public static boolean DigitarArquivo,ArquivoSelecionado, ArquivoExiste = false; //Solicitar no console para usuario digitar o nome do arquivo
 	public static String Arquivo; //Nome do arquivo digitado pelo usuario
-	
+
 	public static void Preparar(Scanner msg, Socket servidor) {
 		if (!DigitarArquivo)
 		  SolicitarArquivo(servidor);
@@ -40,13 +42,30 @@ public class PreparandoCliente {
 	}
 
 
+	//TENTANDO BAIXAR O ARQUIVO
+
+	private static List<Byte> bytes = new LinkedList<Byte>();
 	public static void BaixarArquivo(Scanner msg,Socket servidor) {
 		try {
 
+			//ESTE METODO TEM UM ERRO, SOMENTE ARQUIVOS .TXT É POSSIVEL BAIXAR...
 			OutputStream file = new FileOutputStream("clientes/" + Arquivo);
 
-			byte[] bytes = Base64.getDecoder().decode(msg.nextLine());
-			file.write(bytes);
+			byte[] by = Base64.getDecoder().decode(msg.nextLine());
+
+			int tamanho = by.length-1;
+			while (tamanho != -1) {
+				bytes.add(by[tamanho--]);
+			}
+
+			byte[] array = new byte[bytes.size()];
+
+			for (int i = 0; i < bytes.size(); i++) {
+				array[i] = bytes.get(i).byteValue();
+			}
+
+			file.write(array);
+
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

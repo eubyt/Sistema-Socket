@@ -11,7 +11,7 @@ import org.projeto.threads.estrutura.EstruturaThreads;
 
 public class Sistema {
 	
-	private static String versao = "0.8.5";
+	private static String versao = "0.9.6";
 	
 	public static void main(String[] args) {
 		
