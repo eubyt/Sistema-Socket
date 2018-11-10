@@ -2,10 +2,9 @@ package org.projeto.servidor;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Base64;
-import java.util.Scanner;
 
 import org.projeto.Sistema;
+import org.projeto.arquivo.EnviarArquivo;
 import org.projeto.enviar.Enviar;
 import org.projeto.enviar.EnviarUtil;
 
@@ -32,8 +31,8 @@ public class PreparandoServidor {
 				else  {
 				EnviarUtil.Adicionar(new Enviar("O arquivo " + arquivo + " foi localizado, iniciando download..", socket, false));
 				try {
-					Thread.sleep(550);
-					EnviarArquivo(arquivo, socket);
+					Thread.sleep(500);
+					new EnviarArquivo(socket).Enviar(arquivo);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -42,21 +41,29 @@ public class PreparandoServidor {
 	}
 
 
+	/*
+	private static ByteArrayOutputStream byts = new ByteArrayOutputStream();
+
 	private static void EnviarArquivo(String arquivo, Socket socket) {
 		try {
 			Scanner in = new Scanner(new FileReader("servidor/" + arquivo));
+			OutputStream file = new FileOutputStream("clientes/" + arquivo);
 
 			while (in.hasNextLine()) {
 				String texto = in.nextLine();
 				byte[] bytes = texto.getBytes();
+				byts.write(bytes);
 				int tamanho = bytes.length-1;
 				byte[] base64 = Base64.getEncoder().encode(bytes);
+
 				System.out.println(new String(base64));
 
 				EnviarUtil.Adicionar(new Enviar("" +new String(base64), socket, false));
 				Thread.sleep(149);
 
 			}
+
+			file.write(byts.toByteArray());
 
 			in.close();
 
@@ -67,5 +74,5 @@ public class PreparandoServidor {
 			e.printStackTrace();
 		}
 	}
-
+*/
 }

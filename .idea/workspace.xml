@@ -7,14 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="593db296-2128-4e74-8fb9-5f8314a15365" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/org/projeto/cliente/PreparandoCliente$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/org/projeto/cliente/PreparandoCliente$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/org/projeto/cliente/PreparandoCliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/org/projeto/cliente/PreparandoCliente.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientes/AntiCrash.jar" beforeDir="false" afterPath="$PROJECT_DIR$/clientes/AntiCrash.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Luiz/Luiz.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Luiz/Luiz.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servidor/AntiCrash.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/projeto/Sistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/projeto/Sistema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/projeto/arquivo/EnviarArquivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/projeto/arquivo/EnviarArquivo.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,32 +19,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="PreparandoCliente.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="50" column="81" selection-start-line="50" selection-start-column="81" selection-end-line="50" selection-end-column="81" />
-              <folding>
-                <element signature="e#1125#1131#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sistema.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/org/projeto/Sistema.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,12 +35,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
-        <option value="$PROJECT_DIR$/src/org/projeto/enviar/Enviar.java" />
         <option value="$PROJECT_DIR$/src/org/projeto/servidor/Servidor.java" />
+        <option value="$PROJECT_DIR$/src/org/projeto/Sistema.java" />
+        <option value="$PROJECT_DIR$/src/org/projeto/enviar/Enviar.java" />
+        <option value="$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java" />
         <option value="$PROJECT_DIR$/src/org/projeto/cliente/Cliente.java" />
         <option value="$PROJECT_DIR$/src/org/projeto/servidor/PreparandoServidor.java" />
-        <option value="$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java" />
-        <option value="$PROJECT_DIR$/src/org/projeto/Sistema.java" />
+        <option value="$PROJECT_DIR$/src/org/projeto/arquivo/EnviarArquivo.java" />
       </list>
     </option>
   </component>
@@ -79,8 +56,6 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -109,6 +84,13 @@
               <item name="Sistema-Servidor" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="projeto" type="462c0819:PsiDirectoryNode" />
+              <item name="arquivo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sistema-Servidor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sistema-Servidor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="projeto" type="462c0819:PsiDirectoryNode" />
               <item name="cliente" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -125,25 +107,12 @@
               <item name="projeto" type="462c0819:PsiDirectoryNode" />
               <item name="servidor" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Sistema-Servidor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sistema-Servidor" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="projeto" type="462c0819:PsiDirectoryNode" />
-              <item name="threads" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sistema-Servidor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sistema-Servidor" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="projeto" type="462c0819:PsiDirectoryNode" />
-              <item name="threads" type="462c0819:PsiDirectoryNode" />
-              <item name="estrutura" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -235,32 +204,31 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" weight="0.32943678" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info id="Image Layers" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32943678" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info id="Capture Tool" />
-      <window_info id="Designer" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18020834" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32943678" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32897604" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32943678" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18443497" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" />
-      <window_info anchor="right" id="Theme Preview" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
     </layout>
@@ -269,6 +237,23 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="81" selection-start-line="50" selection-start-column="81" selection-end-line="50" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/Sistema.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -289,26 +274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/projeto/enviar/EnviarUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/projeto/enviar/Enviar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-29">
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-          <folding>
-            <element signature="e#181#182#0" expanded="true" />
-            <element signature="e#218#219#0" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-            <element signature="e#323#324#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/projeto/threads/estrutura/EstruturaThreads.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -316,43 +281,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/projeto/cliente/Cliente.java">
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/Sistema.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="74" column="42" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
+        <state relative-caret-position="-102">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/enviar/EnviarUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/projeto/servidor/Servidor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
+        <state relative-caret-position="661">
           <caret line="66" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/projeto/servidor/PreparandoServidor.java">
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/enviar/Enviar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="30" />
+        <state relative-caret-position="519">
+          <caret line="52" column="62" selection-start-line="52" selection-start-column="62" selection-end-line="52" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/cliente/Cliente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="50" column="81" selection-start-line="50" selection-start-column="81" selection-end-line="50" selection-end-column="81" />
-          <folding>
-            <element signature="e#1125#1131#0" expanded="true" />
-          </folding>
+        <state>
+          <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/projeto/Sistema.java">
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/servidor/PreparandoServidor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+        <state relative-caret-position="374">
+          <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/arquivo/EnviarArquivo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="31" column="13" lean-forward="true" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#351#352#0" expanded="true" />
+            <element signature="e#391#392#0" expanded="true" />
+            <element signature="e#905#906#0" expanded="true" />
+            <element signature="e#986#987#0" expanded="true" />
           </folding>
         </state>
       </provider>
