@@ -4,9 +4,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Iterator;
-import java.util.Scanner;
 
-import org.projeto.arquivo.EnviarArquivo;
 import org.projeto.enviar.EnviarUtil;
 import org.projeto.threads.estrutura.EstruturaThreads;
 
