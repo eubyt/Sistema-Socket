@@ -1,6 +1,6 @@
 package org.projeto.arquivo;
 
-import org.projeto.cliente.PreparandoCliente;
+import org.projeto.Sistema;
 import org.projeto.enviar.Enviar;
 import org.projeto.enviar.EnviarUtil;
 
@@ -24,10 +24,14 @@ public class EnviarArquivo {
     public void Receber(InputStream inputStream, String nome_arquivo) {
         try {
             Scanner socket = new Scanner(inputStream); //Aceitar conex√£o e capturar o valor de entrada
-
             while (socket.hasNextLine()) {
-                System.out.println(socket.nextLine());
+                String msg = socket.nextLine();
+                if (msg.contains("Testando"))
+                    new Sistema.Logger("[DOWNLOAD] "+msg);
+                else
+                	System.out.println("l·");
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();

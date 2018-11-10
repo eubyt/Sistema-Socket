@@ -5,9 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.Socket;
-import java.util.Base64;
-import java.util.LinkedList;
-import java.util.List;
+
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -16,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import org.projeto.Sistema;
+import org.projeto.arquivo.EnviarArquivo;
 import org.projeto.enviar.Enviar;
 import org.projeto.enviar.EnviarUtil;
 
@@ -25,20 +24,31 @@ public class PreparandoCliente {
 	public static String Arquivo; //Nome do arquivo digitado pelo usuario
 
 	public static void Preparar(InputStream inputStream, Socket servidor) {
+	
+		while(true) {
+		if (PreparandoCliente.ArquivoExiste) {
+			new EnviarArquivo(servidor).Receber(inputStream, PreparandoCliente.Arquivo);
+			return;
+		}
+		
+		Scanner socket = new Scanner(inputStream);
+		
+		if (!DigitarArquivo)
+			SolicitarArquivo(servidor);
 
-		Scanner socket = new Scanner(inputStream); //Aceitar conex√£o e capturar o valor de entrada
-
-		while (socket.hasNextLine()) {
-			if (!DigitarArquivo)
-				SolicitarArquivo(servidor);
-
-			if (ArquivoSelecionado) {
-				String msg_string = socket.nextLine();
-				new Sistema.Logger("[SERVIDOR] " + msg_string);
-
-				if (msg_string.contains("foi localizado"))
-					ArquivoExiste = true;
+		if (ArquivoSelecionado) {
+			String msg_string = socket.nextLine();
+			
+			if (msg_string.contains("foi localizado")) {
+				ArquivoExiste = true;	
+				System.out.println("EXISTE POHA.......");
 			}
+			else {
+				System.out.println("Chamando arquivo n„o existe..");
+				new Sistema.Logger("[SERVIDOR] " + msg_string);
+			   }
+			}
+		
 		}
 	}
 

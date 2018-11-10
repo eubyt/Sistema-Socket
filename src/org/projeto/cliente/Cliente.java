@@ -40,12 +40,8 @@ public class Cliente implements EstruturaThreads{
 						 
 						 try {
 						 	     InputStream input = servidor.getInputStream();
-
-									if (PreparandoCliente.ArquivoExiste)
-										new EnviarArquivo(servidor).Receber(input, PreparandoCliente.Arquivo);
-									else
-									    PreparandoCliente.Preparar(input, servidor);
-							 
+								 PreparandoCliente.Preparar(input, servidor);	
+									
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
