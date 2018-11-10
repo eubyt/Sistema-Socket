@@ -72,7 +72,7 @@ public class Cliente implements EstruturaThreads{
 					}
 					
 					EnviarUtil.enviar().clear(); //Limpando Array
-					  try {	Thread.sleep(500); } catch (InterruptedException e) { } //Ter delay para executar este Thread
+					  try {	Thread.sleep(200); } catch (InterruptedException e) { } //Ter delay para executar este Thread
 					}
 				}
 				

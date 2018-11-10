@@ -7,18 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="593db296-2128-4e74-8fb9-5f8314a15365" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/org/projeto/cliente/Cliente$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/org/projeto/cliente/Cliente$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/org/projeto/cliente/PreparandoCliente$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/org/projeto/cliente/PreparandoCliente$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/org/projeto/cliente/PreparandoCliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/org/projeto/cliente/PreparandoCliente.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/org/projeto/enviar/Enviar.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/org/projeto/enviar/Enviar.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/org/projeto/servidor/PreparandoServidor.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/org/projeto/servidor/PreparandoServidor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/org/projeto/servidor/Servidor$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/org/projeto/servidor/Servidor$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientes/teste.txt" beforeDir="false" afterPath="$PROJECT_DIR$/clientes/teste.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Luiz/Luiz.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Luiz/Luiz.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servidor/teste.txt" beforeDir="false" afterPath="$PROJECT_DIR$/servidor/teste.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/projeto/cliente/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/projeto/cliente/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/projeto/enviar/Enviar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/projeto/enviar/Enviar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/projeto/servidor/PreparandoServidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/projeto/servidor/PreparandoServidor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/projeto/servidor/Servidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/projeto/servidor/Servidor.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,74 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EstruturaThreads.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/projeto/threads/estrutura/EstruturaThreads.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ThreadsProjeto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/projeto/threads/ThreadsProjeto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sistema.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/projeto/Sistema.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PreparandoServidor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/projeto/servidor/PreparandoServidor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="56" column="9" lean-forward="true" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cliente.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/projeto/cliente/Cliente.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="43" column="59" lean-forward="true" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PreparandoCliente.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Enviar.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/projeto/enviar/Enviar.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-29">
-              <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-              <folding>
-                <element signature="e#181#182#0" expanded="true" />
-                <element signature="e#218#219#0" expanded="true" />
-                <element signature="e#284#285#0" expanded="true" />
-                <element signature="e#323#324#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="396">
+              <caret line="50" column="32" lean-forward="true" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -110,10 +48,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/org/projeto/servidor/Servidor.java" />
         <option value="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/src/org/projeto/Sistema.java" />
         <option value="$PROJECT_DIR$/src/org/projeto/enviar/Enviar.java" />
+        <option value="$PROJECT_DIR$/src/org/projeto/servidor/Servidor.java" />
         <option value="$PROJECT_DIR$/src/org/projeto/cliente/Cliente.java" />
         <option value="$PROJECT_DIR$/src/org/projeto/servidor/PreparandoServidor.java" />
         <option value="$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java" />
@@ -199,6 +137,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="sistema-servidor" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/Luiz/Luiz.jar" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -330,17 +272,27 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/Sistema.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/threads/ThreadsProjeto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/projeto/enviar/EnviarUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/projeto/servidor/Servidor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
         </state>
       </provider>
     </entry>
@@ -357,16 +309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/projeto/Sistema.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/projeto/threads/estrutura/EstruturaThreads.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -374,31 +316,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/projeto/threads/ThreadsProjeto.java">
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/cliente/Cliente.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        <state relative-caret-position="419">
+          <caret line="74" column="42" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/projeto/servidor/Servidor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/projeto/servidor/PreparandoServidor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="56" column="9" lean-forward="true" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/projeto/cliente/Cliente.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="43" column="59" lean-forward="true" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
+        <state relative-caret-position="451">
+          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/projeto/cliente/PreparandoCliente.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+        <state relative-caret-position="396">
+          <caret line="50" column="32" lean-forward="true" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
         </state>
       </provider>
     </entry>

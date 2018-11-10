@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.Socket;
+import java.util.Base64;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -43,16 +44,10 @@ public class PreparandoCliente {
 		try {
 
 			OutputStream file = new FileOutputStream("clientes/" + Arquivo);
-			System.out.println("Chegou aqui");
-			byte[] buf = new byte[4096];
 
-			while(true) {
-				int len = msg.nextInt();
-				if(len == -1) break;
-				System.out.println(len);
-				file.write(len);
-			}
-			
+			byte[] bytes = Base64.getDecoder().decode(msg.nextLine());
+			file.write(bytes);
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

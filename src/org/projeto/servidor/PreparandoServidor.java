@@ -2,6 +2,8 @@ package org.projeto.servidor;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Base64;
+import java.util.Scanner;
 
 import org.projeto.Sistema;
 import org.projeto.enviar.Enviar;
@@ -42,17 +44,26 @@ public class PreparandoServidor {
 
 	private static void EnviarArquivo(String arquivo, Socket socket) {
 		try {
-			FileInputStream file = new FileInputStream("servidor/" + arquivo);
-			System.out.println("Enviando arquivo...");
-			byte[] buf = new byte[4096];
+			Scanner in = new Scanner(new FileReader("servidor/" + arquivo));
 
-			while(true){
-				int len = file.read(buf);
-				if(len == -1) break;
-				EnviarUtil.Adicionar(new Enviar("" + len, socket, false));
+			while (in.hasNextLine()) {
+				String texto = in.nextLine();
+				byte[] bytes = texto.getBytes();
+				int tamanho = bytes.length-1;
+				byte[] base64 = Base64.getEncoder().encode(bytes);
+				System.out.println(new String(base64));
+
+				EnviarUtil.Adicionar(new Enviar("" +new String(base64), socket, false));
+				Thread.sleep(149);
+
 			}
 
+			in.close();
+
+
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
