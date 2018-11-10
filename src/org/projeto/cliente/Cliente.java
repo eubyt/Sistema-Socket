@@ -39,25 +39,12 @@ public class Cliente implements EstruturaThreads{
 					while(true) {
 						 
 						 try {
-
-
 						 	     InputStream input = servidor.getInputStream();
-								 Scanner socket = new Scanner(input); //Aceitar conexão e capturar o valor de entrada
 
-								while (socket.hasNextLine()) {
 									if (PreparandoCliente.ArquivoExiste)
-										new EnviarArquivo(servidor).Receber(PreparandoCliente.Arquivo);
+										new EnviarArquivo(servidor).Receber(input, PreparandoCliente.Arquivo);
 									else
-									    PreparandoCliente.Preparar(socket, servidor);
-								}
-
-
-
-
-
-
-						
-							 
+									    PreparandoCliente.Preparar(input, servidor);
 							 
 						} catch (Exception e) {
 							e.printStackTrace();

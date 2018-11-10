@@ -21,10 +21,14 @@ public class EnviarArquivo {
     }
 
 
-    public void Receber(String nome_arquivo) {
+    public void Receber(InputStream inputStream, String nome_arquivo) {
         try {
-            System.out.println("Chegou algo aqui ");
-            System.out.println(this.servidor.getInputStream().read());
+            Scanner socket = new Scanner(inputStream); //Aceitar conexão e capturar o valor de entrada
+
+            while (socket.hasNextLine()) {
+                System.out.println(socket.nextLine());
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -24,17 +24,22 @@ public class PreparandoCliente {
 	public static boolean DigitarArquivo,ArquivoSelecionado, ArquivoExiste = false; //Solicitar no console para usuario digitar o nome do arquivo
 	public static String Arquivo; //Nome do arquivo digitado pelo usuario
 
-	public static void Preparar(Scanner msg, Socket servidor) {
-		if (!DigitarArquivo)
-		  SolicitarArquivo(servidor);
+	public static void Preparar(InputStream inputStream, Socket servidor) {
 
-		if (ArquivoSelecionado) {
-			String msg_string = msg.nextLine();
-			new Sistema.Logger("[SERVIDOR] " + msg_string);
+		Scanner socket = new Scanner(inputStream); //Aceitar conexão e capturar o valor de entrada
 
-			if (msg_string.contains("foi localizado"))
-				ArquivoExiste = true;
+		while (socket.hasNextLine()) {
+			if (!DigitarArquivo)
+				SolicitarArquivo(servidor);
+
+			if (ArquivoSelecionado) {
+				String msg_string = socket.nextLine();
+				new Sistema.Logger("[SERVIDOR] " + msg_string);
+
+				if (msg_string.contains("foi localizado"))
+					ArquivoExiste = true;
 			}
+		}
 	}
 
 

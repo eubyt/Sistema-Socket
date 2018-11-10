@@ -33,7 +33,9 @@ public class PreparandoServidor {
 				else  {
 				EnviarUtil.Adicionar(new Enviar("O arquivo " + arquivo + " foi localizado, iniciando download..", socket, false));
 				try {
-					Thread.sleep(1550);
+					Thread.sleep(500);
+					EnviarUtil.Adicionar(new Enviar("Testando conexão para download...", socket, false));
+					Thread.sleep(500);
 					new EnviarArquivo(socket).Enviar(arquivo);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
