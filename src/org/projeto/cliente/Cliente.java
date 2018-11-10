@@ -1,11 +1,12 @@
 package org.projeto.cliente;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import org.projeto.arquivo.EnviarArquivo;
 import org.projeto.enviar.EnviarUtil;
 import org.projeto.threads.estrutura.EstruturaThreads;
 
@@ -39,10 +40,22 @@ public class Cliente implements EstruturaThreads{
 						 
 						 try {
 
-								 Scanner socket = new Scanner(servidor.getInputStream()); //Aceitar conexão e capturar o valor de entrada
-								 while (socket.hasNextLine()) {
-									 PreparandoCliente.Preparar(socket, servidor);
-							 }
+
+						 	     InputStream input = servidor.getInputStream();
+								 Scanner socket = new Scanner(input); //Aceitar conexão e capturar o valor de entrada
+
+								while (socket.hasNextLine()) {
+									if (PreparandoCliente.ArquivoExiste)
+										new EnviarArquivo(servidor).Receber(PreparandoCliente.Arquivo);
+									else
+									    PreparandoCliente.Preparar(socket, servidor);
+								}
+
+
+
+
+
+
 						
 							 
 							 

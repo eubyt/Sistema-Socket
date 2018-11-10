@@ -28,10 +28,6 @@ public class PreparandoCliente {
 		if (!DigitarArquivo)
 		  SolicitarArquivo(servidor);
 
-		if (ArquivoExiste) {
-			PreparandoCliente.BaixarArquivo(msg,servidor);
-		}
-		else
 		if (ArquivoSelecionado) {
 			String msg_string = msg.nextLine();
 			new Sistema.Logger("[SERVIDOR] " + msg_string);
@@ -42,35 +38,7 @@ public class PreparandoCliente {
 	}
 
 
-	//TENTANDO BAIXAR O ARQUIVO
 
-	private static List<Byte> bytes = new LinkedList<Byte>();
-	public static void BaixarArquivo(Scanner msg,Socket servidor) {
-		try {
-
-			//ESTE METODO TEM UM ERRO, SOMENTE ARQUIVOS .TXT É POSSIVEL BAIXAR...
-			OutputStream file = new FileOutputStream("clientes/" + Arquivo);
-
-			byte[] by = Base64.getDecoder().decode(msg.nextLine());
-
-			int tamanho = by.length-1;
-			while (tamanho != -1) {
-				bytes.add(by[tamanho--]);
-			}
-
-			byte[] array = new byte[bytes.size()];
-
-			for (int i = 0; i < bytes.size(); i++) {
-				array[i] = bytes.get(i).byteValue();
-			}
-
-			file.write(array);
-
-
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
 	
 	private static void SolicitarArquivo(Socket servidor) {
 		DigitarArquivo = true;
