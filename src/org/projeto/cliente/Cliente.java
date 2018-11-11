@@ -1,6 +1,7 @@
 package org.projeto.cliente;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.*;
@@ -8,6 +9,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import org.projeto.inicio;
+import org.projeto.arquivo.Arquivo;
 import org.projeto.cliente.servidor.ClienteServer;
 
 public class Cliente {
@@ -39,6 +41,7 @@ public class Cliente {
 		   nome_arquivo = s.nextLine();
 		   
 		   EnviarNome();
+		   CriarServidorCliente();
 		   
 		} catch(Exception ex) {
 			ex.printStackTrace();
@@ -76,6 +79,12 @@ public class Cliente {
 				 while (entrada.hasNext()) {
 					 String mensagem = entrada.nextLine();
 					 
+					 if (mensagem.contains("Download/")) {
+						    String[] linhas = mensagem.split("/");
+							System.out.println("Enviando arquivo para " + linhas[2]);
+							EnviarArquivo(linhas[1], linhas[2]);
+							
+						 } else
 					 if (mensagem.contains("Buscar/")) {
 						BuscarArquivo(mensagem);
 					 } else {
@@ -95,11 +104,31 @@ public class Cliente {
 	}
 	
 	
+	private void EnviarArquivo(String arquivo, String ip) {
+		String[] destino_ip = ip.split(":");
+		try {
+			Socket destino = new Socket(destino_ip[0], Integer.parseInt(destino_ip[1]));
+			new Arquivo(arquivo, destino).Enviar();
+			
+			destino.close();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	private void BuscarArquivo(String texto) {
 		String[] a = texto.split("/");
 		new inicio.Logger("Servidor solicitou a busca do arquivo: " + a[1]);
 		if (new File("baixados").exists()) {
 			new inicio.Logger("Arquivo " + a[1] + " existe...");
+			try {
+				EnviarParaServidor("Localizado/" + a[1]);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else
 			new inicio.Logger("O arquivo " + a[1] + " não existe");
 	}

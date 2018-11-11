@@ -31,7 +31,7 @@ public class Arquivo {
 	}
 	
 	private void Formatar() throws Exception {
-		this.arquivo = new File (nome_arquivo);
+		this.arquivo = new File ("diretorio/" + nome_arquivo);
 		
 		if (!this.arquivo.exists()) {
 			//Se caso ele não existir preparar este classe para download

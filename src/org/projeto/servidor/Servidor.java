@@ -1,8 +1,9 @@
 package org.projeto.servidor;
 
 import java.net.*;
-import java.text.Format;
-import java.util.Collection;
+
+import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -16,7 +17,8 @@ public class Servidor {
 	
 	private boolean ouvir_porta = false;
 	HashMap<Socket, String> servidores = new HashMap<Socket, String>();
-	
+	HashMap<String, Socket> arquivo = new HashMap<String, Socket>();
+	ArrayList<Socket> pessoas = new ArrayList<Socket>();
 	
 	public Servidor() {
 		
@@ -61,6 +63,13 @@ public class Servidor {
 									 if(comandos[0].equals("Baixar")) {
 										  new inicio.Logger("Solicitando download do arquivo " + comandos[1] + "....");
 										  Buscar(comandos[1], conexao);
+										  Thread.sleep(1000);
+										  EnviarParaCliente(pessoas.size() + " possuem o seu arquivo..", conexao);
+										  SolicitarDownload(comandos[1]);
+										  
+									 } else if (comandos[0].equals("Localizado")) {
+										pessoas.add(conexao);
+										 
 									 }
 							  }
 							}
@@ -82,7 +91,20 @@ public class Servidor {
 	}
 	
 	
+	private void SolicitarDownload(String arquivo) {
+		for (Socket clientes : pessoas) {
+			   try {
+				EnviarParaCliente("Download/"+arquivo+"/" + servidores.get((this.arquivo.get(arquivo))), clientes);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	private void Buscar(String arquivo, Socket cliente_que_solicitou) {
+	    this.arquivo.put(arquivo, cliente_que_solicitou);
+	    
 		for (Socket clientes : servidores.keySet()) {
 		try {
 			if (clientes != cliente_que_solicitou)
