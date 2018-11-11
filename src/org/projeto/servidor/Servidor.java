@@ -1,77 +1,140 @@
 package org.projeto.servidor;
 
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.Iterator;
+import java.net.*;
+
+import java.util.ArrayList;
+
+import java.util.HashMap;
 import java.util.Scanner;
 
-import org.projeto.Sistema;
-import org.projeto.enviar.EnviarUtil;
-import org.projeto.threads.estrutura.EstruturaThreads;
+import org.projeto.inicio;
 
-public class Servidor implements EstruturaThreads{
+import java.io.*;
+
+public class Servidor {
+
+	private ServerSocket servidor; //Servidor
 	
-	public ServerSocket servidor = null;
+	private boolean ouvir_porta = false;
+	HashMap<Socket, String> servidores = new HashMap<Socket, String>();
+	HashMap<String, Socket> arquivo = new HashMap<String, Socket>();
+	ArrayList<Socket> pessoas = new ArrayList<Socket>();
 	
 	public Servidor() {
+		
 		try {
-			this.servidor = new ServerSocket(123); //abrir servidor socket
-			new Sistema.Logger("Servidor iniciado...");
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
+		this.servidor = new ServerSocket(12345);
+		this.ouvir_porta = true;
+		
+		new inicio.Logger("Servidor iniciado...");
+		//Chamar Entrada
+		Entrada();
+		
+		} catch(Exception ex) {
+			
+		}
+		
+	}
+	
+	
+	
+	private void Entrada() throws IOException {
+		while(ouvir_porta) {
+			
+			  Socket conexao = servidor.accept(); //ouvir a conexao
+			  new inicio.Logger("Conex„o -> " + conexao);
+			  try {
+		
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							try {
+							Scanner entrada = new Scanner(conexao.getInputStream());
+					         
+							  while (entrada.hasNextLine()) {
+					        	     String texto = entrada.nextLine();
+							
+									 String[] comandos = texto.split("/");
+									 
+									 if (comandos[0].equals("CriarCliente")) {
+										 servidores.put(conexao, comandos[1]); //Salvar Cliente
+										 EnviarParaCliente(visualizarArquivos(), conexao);
+									 } else
+									 if(comandos[0].equals("Baixar")) {
+										  new inicio.Logger("Solicitando download do arquivo " + comandos[1] + "....");
+										  Buscar(comandos[1], conexao);
+										  Thread.sleep(1000);
+										  EnviarParaCliente(pessoas.size() + " possuem o seu arquivo..", conexao);
+										  SolicitarDownload(comandos[1]);
+										  
+									 } else if (comandos[0].equals("Localizado")) {
+										pessoas.add(conexao);
+										 
+									 }
+							  }
+							}
+							 catch (Exception e) {
+								  
+							  }
+						}
+						}).start();;
+				  
+				 
+
+				 
+				// new Arquivo(scan.nextLine(), conexao).Enviar();
+				 
+			} catch (Exception e) {
+				new inicio.Logger("Conex„o desligada de forma forÁada de um cliente.");
+			}
 		}
 	}
 	
-
 	
-	//Este √© um Thread somente para receber as mensagens
-	@Override
-	public Runnable Receber() {
-		return new Runnable() {
-
-			@Override
-			public void run() {
-				while(true) {
-					try {						
-						 Socket cliente = servidor.accept();
-						 new Sistema.Logger("Conex√£o recebida <"+cliente.getInetAddress().getHostAddress() + ">...");
-						 EnviarUtil.Adicionar(new org.projeto.enviar.Enviar("Conectado com sucesso...", cliente, false));
-						 Scanner socket = new Scanner(cliente.getInputStream()); //Aceitar conex√£o e capturar o valor de entrada
-						 while(socket.hasNextLine()){
-							   String mensagem = socket.nextLine();
-							   new Sistema.Logger("[CLIENTE - " + cliente.getInetAddress().getHostAddress() + "] " + mensagem); //Imprimir o resultado
-							   PreparandoServidor.Comandos(mensagem, cliente);
-						 }
-						 
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				
+	private void SolicitarDownload(String arquivo) {
+		int numero= 1;
+		for (Socket clientes : pessoas) {
+			   try {
+				EnviarParaCliente("Download/"+arquivo+"/" + servidores.get((this.arquivo.get(arquivo)))+"/" + pessoas.size() + "/"+numero, clientes);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			
-		};
+		}
 	}
-
-	//Este √© um Thread somente para enviar as mensagens
-	@Override
-	public Runnable Enviar() {
-		return new Runnable() {
-			@Override
-			public void run() {
-				while (true) {
-				  Iterator<org.projeto.enviar.Enviar> lista = EnviarUtil.enviar().iterator(); //Carregando ArrayList de mensagens
-				  while(lista.hasNext()) {
-					 lista.next().Executar(); //Enviando elas
-				  }
-				  EnviarUtil.enviar().clear(); //Limpando Array
-				  try {	Thread.sleep(200); } catch (InterruptedException e) { } //Ter delay para executar este Thread
-				}
-			}
-			
-		};
+	
+	private void Buscar(String arquivo, Socket cliente_que_solicitou) {
+	    this.arquivo.put(arquivo, cliente_que_solicitou);
+	    
+		for (Socket clientes : servidores.keySet()) {
+		try {
+			if (clientes != cliente_que_solicitou)
+			   EnviarParaCliente("Buscar/"+arquivo, clientes);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 	}
+	
+	
+	private String visualizarArquivos() throws IOException {
 
+		File diretorio = new File("diretorio");
+		File arquivos[] = diretorio.listFiles();
+		int i = 0;
+		String  retorno = "Lista de Arquivos para Download:/n";
+		for (int j = arquivos.length; i < j; i++) {
+			File arquivo = arquivos[i];
+			retorno += " [-] " + arquivo.getName() + "/n";
+		}
+		
+		return retorno;
+	}
+	
+	private void EnviarParaCliente(String msg, Socket cliente) throws Exception {
+		PrintStream enviar_nome_arquivo = new PrintStream (cliente.getOutputStream()); 
+		enviar_nome_arquivo.println(msg);
+		enviar_nome_arquivo.flush();
+	}
 }
