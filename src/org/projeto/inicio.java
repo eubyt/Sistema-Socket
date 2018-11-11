@@ -1,6 +1,12 @@
 package org.projeto;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import org.projeto.cliente.Cliente;
@@ -9,6 +15,8 @@ import org.projeto.servidor.Servidor;
 public class inicio {
 
 	public static void main(String[] inicio) {
+		
+	
 		Scanner s = new Scanner(System.in);
 		new Logger("Deseja iniciar este projeto como um servidor? [S/N]");
 		new Logger("[S] - Projeto vai ser iniciado como um servidor.");
@@ -21,7 +29,13 @@ public class inicio {
 		} else {
 			new Cliente();
 		}
+		
 	}
+	
+	
+
+	
+
 	
 	
 public static class Logger {

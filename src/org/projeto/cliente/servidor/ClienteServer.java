@@ -8,6 +8,7 @@ public class ClienteServer {
 
 	private ServerSocket servidor;
 	public String ip;
+	int arquivo = 0;
 	
 	public ClienteServer(int porta) {
 		try {
@@ -15,13 +16,12 @@ public class ClienteServer {
 			this.ip = servidor.getInetAddress().getHostAddress() + ":" + servidor.getLocalPort();
 			System.out.println("Servidor de recebimento, ligado..");	
 			while(true) {
-			new Arquivo("receber.zip", servidor.accept()).Receber();
+			new Arquivo((arquivo++) + ".zip", servidor.accept()).Receber();
 			}
-			
-		
-		
 		    } catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	
 }

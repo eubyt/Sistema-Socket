@@ -1,10 +1,18 @@
 package org.projeto.cliente;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.*;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -54,12 +62,51 @@ public class Cliente {
 	}
 	
 	private void CriarServidorCliente() {
-		new Thread(new Runnable() {
+		Thread r = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				new ClienteServer(porta_servidor);
 			}
-		}).start(); //Criando servidor proprio de nosso cliente...
+		});//Criando servidor proprio de nosso cliente...
+		r.start();
+		try {
+			Thread.sleep(3500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		r.stop();
+		System.out.println("Misturando...");
+		
+		int b = 0;
+		List<File> arquivos = new ArrayList<File>();
+		boolean tem = true;
+		while(tem) {
+			File a = new File("diretorio/" + b++ +".zip");
+			if (a.exists()) {
+				arquivos.add(a);
+			} 
+			else
+				tem = false;
+		}
+		try {
+			Juntar(arquivos, new File("recebido.zip"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+}
+	
+
+	public static void Juntar(List<File> files, File into)
+	        throws IOException {
+	    try (FileOutputStream fos = new FileOutputStream(into);
+	         BufferedOutputStream mergingStream = new BufferedOutputStream(fos)) {
+	        for (File f : files) {
+	            Files.copy(f.toPath(), mergingStream);
+	        }
+	    }
 	}
 	
 	
@@ -82,7 +129,7 @@ public class Cliente {
 					 if (mensagem.contains("Download/")) {
 						    String[] linhas = mensagem.split("/");
 							System.out.println("Enviando arquivo para " + linhas[2]);
-							EnviarArquivo(linhas[1], linhas[2]);
+							EnviarArquivo(linhas[1], linhas[2], linhas[3], linhas[4]);
 							
 						 } else
 					 if (mensagem.contains("Buscar/")) {
@@ -104,11 +151,11 @@ public class Cliente {
 	}
 	
 	
-	private void EnviarArquivo(String arquivo, String ip) {
+	private void EnviarArquivo(String arquivo, String ip, String quebrar, String enviar) {
 		String[] destino_ip = ip.split(":");
 		try {
 			Socket destino = new Socket(destino_ip[0], Integer.parseInt(destino_ip[1]));
-			new Arquivo(arquivo, destino).Enviar();
+			new Arquivo(arquivo, destino).Enviar(Integer.parseInt(quebrar), Integer.parseInt(enviar));
 			
 			destino.close();
 			

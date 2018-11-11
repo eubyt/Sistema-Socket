@@ -92,9 +92,10 @@ public class Servidor {
 	
 	
 	private void SolicitarDownload(String arquivo) {
+		int numero= 1;
 		for (Socket clientes : pessoas) {
 			   try {
-				EnviarParaCliente("Download/"+arquivo+"/" + servidores.get((this.arquivo.get(arquivo))), clientes);
+				EnviarParaCliente("Download/"+arquivo+"/" + servidores.get((this.arquivo.get(arquivo)))+"/" + pessoas.size() + "/"+numero, clientes);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

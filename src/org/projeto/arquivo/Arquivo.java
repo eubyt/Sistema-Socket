@@ -5,9 +5,12 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.nio.file.Files;
 
 import org.projeto.inicio;
 
@@ -40,23 +43,55 @@ public class Arquivo {
 			return;
 		}
 		//Se existir preparar para upload
+	}
+	
+	
+	/// @envi é o arquivo para enviar
+	public void Enviar(int quebrar, int envi) throws Exception {
 		
+		Quebrar(this.arquivo, quebrar);
+		this.arquivo = new File ((envi-1) + ".zip");
 		this.bytes = new byte[(int)this.arquivo.length()]; //Criar uma Array de Bytes com o tamnho do arquivo
 		
 		BufferedInputStream bytes_arquivo = new BufferedInputStream(new FileInputStream(this.arquivo)); //Ler os bytes do arquivo
 		bytes_arquivo.read(this.bytes, 0, this.bytes.length); //Aqui estamos escrevendo os bytes do arquivo em nossa Array
 	
 		bytes_arquivo.close(); //Fechando o Buffered
-	}
-	
-	
-	public void Enviar() throws Exception {
+		
 		 OutputStream enviar = this.conexao.getOutputStream(); //Preparando a conexão para envio
 		 enviar.write(this.bytes, 0, this.bytes.length); //Enviado nossa Array de Bytes, mesma logica da linha 40...
 		 enviar.flush(); //forçar os dados a serem escritos...
 		 enviar.close(); //fechando conexão
 		 new inicio.Logger("Arquivo enviado...");
 	}
+	
+	
+	public void Quebrar(File arquivo, int numero) {
+		try {
+	       FileReader fr = new FileReader( arquivo );
+           long tamanhoTotal = Files.size( arquivo.toPath() );
+           int quantidade = numero;
+           long tamanhoPorArquivo = tamanhoTotal / quantidade;
+           long tamanhoUltimoArquivo = tamanhoPorArquivo + (tamanhoTotal % quantidade);
+           long maximo;
+           for ( int i = 0; i < quantidade; i++ ) {
+               if ( i == quantidade - 1 ) {
+                   maximo = tamanhoUltimoArquivo;
+               } else {
+                   maximo = tamanhoPorArquivo;
+               }
+               File arquivoAtual = new File( i + ".zip" );
+               FileWriter fw = new FileWriter( arquivoAtual );
+               for ( int j = 0; j < maximo; j++ ) {
+                   fw.write( fr.read() );
+               }
+               fw.close();
+           }
+           fr.close();
+       } catch ( Exception exc ) {
+           exc.printStackTrace();
+       }
+}
 	
 	
 	
