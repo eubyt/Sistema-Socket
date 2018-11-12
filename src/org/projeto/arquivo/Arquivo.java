@@ -77,14 +77,14 @@ public class Arquivo {
 		 File arquivo = new File("0.zip");
 		 if (!arquivo.exists()) {
 		 DataOutputStream dos = new DataOutputStream(new FileOutputStream(arquivo));
-		 byte[] buffer = new byte[8192]; // or wherever you like > 0
+		 byte[] buffer = new byte[8192];
 		 int count;
          while ((count = dis.read(buffer)) > 0)
          {
              dos.write(buffer, 0, count);
          }
 		 } else {
-			 byte[] buffer = new byte[8192]; // or wherever you like > 0
+			 byte[] buffer = new byte[8192];
 			 int count;
 	         while ((count = dis.read(buffer)) > 0)
 	         {
