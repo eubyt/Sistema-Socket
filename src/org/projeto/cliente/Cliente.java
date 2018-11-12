@@ -1,10 +1,9 @@
 package org.projeto.cliente;
 
-import java.io.BufferedInputStream;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +31,7 @@ public class Cliente {
 	
 	public Cliente() {
 		try {
+			
 			
 		   new File("baixados").mkdirs();
 		   
@@ -68,47 +68,8 @@ public class Cliente {
 				new ClienteServer(porta_servidor);
 			}
 		});//Criando servidor proprio de nosso cliente...
-		r.start();
-		try {
-			Thread.sleep(3500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		r.stop();
-		System.out.println("Misturando...");
-		
-		int b = 0;
-		List<File> arquivos = new ArrayList<File>();
-		boolean tem = true;
-		while(tem) {
-			File a = new File("diretorio/" + b++ +".zip");
-			if (a.exists()) {
-				arquivos.add(a);
-			} 
-			else
-				tem = false;
-		}
-		try {
-			Juntar(arquivos, new File("recebido.zip"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		r.start();	
 }
-	
-
-	public static void Juntar(List<File> files, File into)
-	        throws IOException {
-	    try (FileOutputStream fos = new FileOutputStream(into);
-	         BufferedOutputStream mergingStream = new BufferedOutputStream(fos)) {
-	        for (File f : files) {
-	            Files.copy(f.toPath(), mergingStream);
-	        }
-	    }
-	}
-	
 	
 	private void EnviarNome() throws Exception {
 		EnviarParaServidor("Baixar/" +this.nome_arquivo);
@@ -186,4 +147,6 @@ public class Cliente {
 		enviar_nome_arquivo.println(msg);
 		enviar_nome_arquivo.flush();
 	}
+	
+
 }

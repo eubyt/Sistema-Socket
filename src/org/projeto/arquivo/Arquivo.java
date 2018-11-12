@@ -1,16 +1,18 @@
 package org.projeto.arquivo;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 
 import org.projeto.inicio;
 
@@ -48,14 +50,15 @@ public class Arquivo {
 	
 	/// @envi é o arquivo para enviar
 	public void Enviar(int quebrar, int envi) throws Exception {
-		
 		Quebrar(this.arquivo, quebrar);
+		System.out.println(envi);
+		System.out.println((envi-1));
 		this.arquivo = new File ((envi-1) + ".zip");
 		this.bytes = new byte[(int)this.arquivo.length()]; //Criar uma Array de Bytes com o tamnho do arquivo
 		
 		BufferedInputStream bytes_arquivo = new BufferedInputStream(new FileInputStream(this.arquivo)); //Ler os bytes do arquivo
-		bytes_arquivo.read(this.bytes, 0, this.bytes.length); //Aqui estamos escrevendo os bytes do arquivo em nossa Array
-	
+		int total = bytes_arquivo.read(this.bytes, 0, this.bytes.length); //Aqui estamos escrevendo os bytes do arquivo em nossa Array
+		System.out.println(total);
 		bytes_arquivo.close(); //Fechando o Buffered
 		
 		 OutputStream enviar = this.conexao.getOutputStream(); //Preparando a conexão para envio
@@ -63,8 +66,34 @@ public class Arquivo {
 		 enviar.flush(); //forçar os dados a serem escritos...
 		 enviar.close(); //fechando conexão
 		 new inicio.Logger("Arquivo enviado...");
+		 
 	}
 	
+
+	
+	
+	public void Receber() throws Exception {
+		 DataInputStream dis = new DataInputStream(conexao.getInputStream());
+		 File arquivo = new File("0.zip");
+		 if (!arquivo.exists()) {
+		 DataOutputStream dos = new DataOutputStream(new FileOutputStream(arquivo));
+		 byte[] buffer = new byte[8192];
+		 int count;
+         while ((count = dis.read(buffer)) > 0)
+         {
+             dos.write(buffer, 0, count);
+         }
+		 } else {
+			 byte[] buffer = new byte[8192];
+			 int count;
+	         while ((count = dis.read(buffer)) > 0)
+	         {
+	             Files.write(arquivo.toPath(),buffer, StandardOpenOption.APPEND);
+	         }
+		 }
+		 
+		 
+	}
 	
 	public void Quebrar(File arquivo, int numero) {
 		try {
@@ -93,25 +122,4 @@ public class Arquivo {
        }
 }
 	
-	
-	
-	public void Receber() throws Exception {
-	    InputStream entrada = this.conexao.getInputStream(); //Ouvir a entrada da Array de bytes..
-	    int total_bytes = entrada.read(this.bytes, 0, this.bytes.length); //Salvado os bytes na Array, novamente mesma merda da linha 40...
-	    BufferedOutputStream bytes_arquivo = new BufferedOutputStream(new FileOutputStream(this.arquivo)); //Criar e preparar arquivo para escrever
-	    int loop = total_bytes;
-	    
-	    while(total_bytes > -1) {
-	    	total_bytes = entrada.read(this.bytes, loop, (this.bytes.length-loop)); //Carregar todos os bytes neste loop
-	    	loop += total_bytes;
-	    }
-	    
-		bytes_arquivo.write(this.bytes, 0, loop); //Escrever no arquivo
-		bytes_arquivo.close(); //Fechando
-		new inicio.Logger("Arquivo recebido...");
-	}
-	
-	
-	
-
 }

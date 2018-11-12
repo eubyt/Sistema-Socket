@@ -95,7 +95,8 @@ public class Servidor {
 		int numero= 1;
 		for (Socket clientes : pessoas) {
 			   try {
-				EnviarParaCliente("Download/"+arquivo+"/" + servidores.get((this.arquivo.get(arquivo)))+"/" + pessoas.size() + "/"+numero, clientes);
+				EnviarParaCliente("Download/"+arquivo+"/" + servidores.get((this.arquivo.get(arquivo)))+"/" + pessoas.size() + "/"+numero++, clientes);
+				Thread.sleep(1000);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
