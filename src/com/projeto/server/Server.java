@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.projeto.diretorio.Diretorio;
+import com.projeto.server.arquivo.ArquivoData;
 import com.projeto.socket.SocketAPI;
 
 /**
@@ -21,6 +22,7 @@ public abstract class Server extends SocketAPI {
 	protected List<String> arquivos_download;
 
 	private HashMap<Socket, DataCliente> clientes = new HashMap<Socket, DataCliente>();
+	private HashMap<String, ArquivoData> arquivos = new HashMap<String, ArquivoData>();
 
 	/**
 	 * Método de preparo para executar os comandos solicitado pelo cliente
@@ -67,10 +69,16 @@ public abstract class Server extends SocketAPI {
 	}
 
 	protected void ConsultarArquivo(Socket socket) {
+		AddArquivo(socket);
+
 		for (Socket clientes : getCliente().keySet()) {
 			if (clientes != socket)
 				EnviarMensagem("Consultar/" + getCliente(socket).Arquivo, clientes);
 		}
+	}
+
+	protected void AddArquivo(Socket cliente) {
+		arquivos.put(getCliente(cliente).Arquivo, new ArquivoData(getCliente(cliente)));
 	}
 
 }

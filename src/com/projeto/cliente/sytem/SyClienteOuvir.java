@@ -28,6 +28,7 @@ public class SyClienteOuvir implements Runnable {
 					if (texto.contains("/")) {
 						String[] variaveis = texto.split("/");
 						String comando = variaveis[0];
+						variaveis = texto.replace(variaveis[0] + "/", "").split("/");
 						this.cliente.Comandos(comando, variaveis);
 						
 						

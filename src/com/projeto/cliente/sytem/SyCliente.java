@@ -1,10 +1,10 @@
 package com.projeto.cliente.sytem;
 
-import java.net.Socket;
-import java.util.Scanner;
+import java.io.File;
 
 import com.projeto.Main;
 import com.projeto.cliente.Cliente;
+import com.projeto.diretorio.Diretorio;
 
 public class SyCliente extends Cliente {
 
@@ -67,6 +67,12 @@ public class SyCliente extends Cliente {
 	public void BuscarArquivo(String nome_arquivo) {
 
 		System.out.println("Buscando arquivo " + nome_arquivo);
+		File arquivo_download = new File(Diretorio.ListaDiretorios.ARQUIVOS_DOWNLOAD.nome + "/" + nome_arquivo);
+		if (arquivo_download.exists()) {
+			System.out.println("Arquivo " + nome_arquivo + " existe");
+			EnviarMensagem("Localizado/" + nome_arquivo);
+		} else 
+			System.out.println("Arquivo não existe: " + nome_arquivo);
 		
 	}
 

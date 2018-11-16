@@ -37,10 +37,10 @@ public class Diretorio {
 	public static enum ListaDiretorios {
 
 		ARQUIVOS_SERVIDOR(Opcoes.SERVIDOR, "Arquivos"),
-		ARQUIVOS_DOWNLOAD(Opcoes.CLIENTE, "Download");
+		ARQUIVOS_DOWNLOAD(Opcoes.CLIENTE, "Baixados");
 
 		protected Opcoes opcao;
-		protected String nome;
+		public String nome;
 
 		ListaDiretorios(Opcoes opcoes, String pasta) {
 			opcao = opcoes;

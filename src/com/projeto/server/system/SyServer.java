@@ -48,6 +48,7 @@ public class SyServer extends Server {
 			getCliente(socket).Arquivo = variaveis[0];
 			ConsultarArquivo(socket);
 		}
+	
 		
 	}
 	
