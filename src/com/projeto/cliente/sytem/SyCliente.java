@@ -57,10 +57,10 @@ public class SyCliente extends Cliente {
 
 	@Override
 	public void Comandos(String comando, String[] variaveis) {
-		if(comando.equals("Consultar")) 
+		if (comando.equals("Consultar"))
 			BuscarArquivo(variaveis[0]);
-		
-		
+		if (comando.equals("BaixarServidor"))
+			this.BaixarServidor = true;
 	}
 
 	@Override
@@ -71,9 +71,9 @@ public class SyCliente extends Cliente {
 		if (arquivo_download.exists()) {
 			System.out.println("Arquivo " + nome_arquivo + " existe");
 			EnviarMensagem("Localizado/" + nome_arquivo);
-		} else 
+		} else
 			System.out.println("Arquivo não existe: " + nome_arquivo);
-		
+
 	}
 
 }

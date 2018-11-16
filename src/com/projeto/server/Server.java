@@ -1,6 +1,7 @@
 package com.projeto.server;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.Socket;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import com.projeto.diretorio.Diretorio;
 import com.projeto.server.arquivo.ArquivoData;
+import com.projeto.server.arquivo.SyArquivo;
 import com.projeto.socket.SocketAPI;
 
 /**
@@ -76,22 +78,27 @@ public abstract class Server extends SocketAPI {
 				EnviarMensagem("Consultar/" + getCliente(socket).Arquivo, clientes);
 		}
 	}
-	
+
 	protected void PrepararDownload(Socket cliente, String arquivo) {
 		int pessoas = arquivos.get(arquivo).clientes.size();
 		EnviarMensagem("Pessoas que possuem seu arquivo: " + pessoas, cliente);
 		if (pessoas == 0) {
-			EnviarMensagem("Baixando do servidor...", cliente);
-			
+			EnviarMensagem("BaixarServidor/Baixando do servidor...", cliente);
+			File enviar = new File(Diretorio.ListaDiretorios.ARQUIVOS_SERVIDOR + "/" + arquivo);
+
+			try {
+				SyArquivo.Enviar(cliente, enviar);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 
-	
-	protected void PossuiArquivo(Socket cliente, String arquivo) 
-	{
+	protected void PossuiArquivo(Socket cliente, String arquivo) {
 		arquivos.get(arquivo).clientes.add(cliente);
 	}
-	
+
 	protected void AddArquivo(Socket cliente) {
 		arquivos.put(getCliente(cliente).Arquivo, new ArquivoData(getCliente(cliente)));
 	}

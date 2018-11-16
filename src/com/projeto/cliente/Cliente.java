@@ -12,6 +12,8 @@ import com.projeto.socket.SocketAPI;
  */
 public abstract class Cliente extends SocketAPI {
 
+	protected boolean BaixarServidor = false;
+	
 	public abstract void PrepararCliente();
 	
 	public abstract void BuscarArquivo(String nome_arquivo);
