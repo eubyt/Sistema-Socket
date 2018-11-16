@@ -47,8 +47,18 @@ public class SyServer extends Server {
 		if (comando.equals("ProcurarArquivo")) {
 			getCliente(socket).Arquivo = variaveis[0];
 			ConsultarArquivo(socket);
+			
+			try {
+				Thread.sleep(2000); // 2 segundos
+				PrepararDownload(socket, variaveis[0]);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} 
 		}
-	
+		
+		if (comando.equals("Localizado")) {
+			PossuiArquivo(socket, variaveis[0]);
+		}
 		
 	}
 	

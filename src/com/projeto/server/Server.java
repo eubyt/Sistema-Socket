@@ -76,7 +76,22 @@ public abstract class Server extends SocketAPI {
 				EnviarMensagem("Consultar/" + getCliente(socket).Arquivo, clientes);
 		}
 	}
+	
+	protected void PrepararDownload(Socket cliente, String arquivo) {
+		int pessoas = arquivos.get(arquivo).clientes.size();
+		EnviarMensagem("Pessoas que possuem seu arquivo: " + pessoas, cliente);
+		if (pessoas == 0) {
+			EnviarMensagem("Baixando do servidor...", cliente);
+			
+		}
+	}
 
+	
+	protected void PossuiArquivo(Socket cliente, String arquivo) 
+	{
+		arquivos.get(arquivo).clientes.add(cliente);
+	}
+	
 	protected void AddArquivo(Socket cliente) {
 		arquivos.put(getCliente(cliente).Arquivo, new ArquivoData(getCliente(cliente)));
 	}
