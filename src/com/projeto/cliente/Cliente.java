@@ -14,7 +14,7 @@ public abstract class Cliente extends SocketAPI {
 
 	public abstract void PrepararCliente();
 	
-	public abstract void BuscarArquivo();
+	public abstract void BuscarArquivo(String nome_arquivo);
 
 	public abstract void EnviarArquivo();
 	

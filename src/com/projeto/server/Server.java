@@ -18,9 +18,8 @@ import com.projeto.socket.SocketAPI;
  */
 public abstract class Server extends SocketAPI {
 
-	
 	protected List<String> arquivos_download;
-	
+
 	private HashMap<Socket, DataCliente> clientes = new HashMap<Socket, DataCliente>();
 
 	/**
@@ -38,7 +37,7 @@ public abstract class Server extends SocketAPI {
 	protected DataCliente getCliente(Socket socket) {
 		return clientes.get(socket);
 	}
-	
+
 	private HashMap<Socket, DataCliente> getCliente() {
 		return clientes;
 	}
@@ -61,16 +60,16 @@ public abstract class Server extends SocketAPI {
 
 		return lista_arquivos;
 	}
-	
-	
+
 	protected void EnviarListaDownload(Socket socket) {
 		String arquivos = String.join(",", arquivos_download);
 		EnviarMensagem(arquivos, socket);
 	}
-	
+
 	protected void ConsultarArquivo(Socket socket) {
 		for (Socket clientes : getCliente().keySet()) {
-			EnviarMensagem("Consultar/"+getCliente(socket).Arquivo, clientes);
+			if (clientes != socket)
+				EnviarMensagem("Consultar/" + getCliente(socket).Arquivo, clientes);
 		}
 	}
 

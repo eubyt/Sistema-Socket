@@ -29,13 +29,8 @@ public class SyCliente extends Cliente {
 
 	@Override
 	public void OuvirSocket() {
-		new Thread(new SyClienteOuvir(servidor)).start();
+		new Thread(new SyClienteOuvir(this, servidor)).start();
 		PrepararCliente();
-	}
-
-	@Override
-	public void BuscarArquivo() {
-
 	}
 
 	@Override
@@ -62,7 +57,16 @@ public class SyCliente extends Cliente {
 
 	@Override
 	public void Comandos(String comando, String[] variaveis) {
+		if(comando.equals("Consultar")) 
+			BuscarArquivo(variaveis[0]);
+		
+		
+	}
 
+	@Override
+	public void BuscarArquivo(String nome_arquivo) {
+
+		System.out.println("Buscando arquivo " + nome_arquivo);
 		
 	}
 
