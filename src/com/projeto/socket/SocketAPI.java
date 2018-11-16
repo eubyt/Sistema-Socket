@@ -13,10 +13,15 @@ public abstract class SocketAPI implements InterSocket {
 
 	protected int Porta;
 	protected String ip;
-
+	
 	protected void EnviarMensagem(String mensagem) {
+		EnviarMensagem(mensagem, servidor);
+	}
+	
+
+	protected void EnviarMensagem(String mensagem, Socket socket) {
 		try {
-		PrintStream enviar = new PrintStream(servidor.getOutputStream());
+		PrintStream enviar = new PrintStream(socket.getOutputStream());
 		enviar.println(mensagem);
 		enviar.flush();
 		} catch (IOException e) {

@@ -17,7 +17,7 @@ public class Diretorio {
 		do {
 			ListaDiretorios valor = lista.next();
 
-			if (valor.equals(Main._opcao)) 
+			if (valor.opcao.equals(Main._opcao)) 
 				arquivo.put(valor, 	CriarPasta(valor.nome));
 			
 
@@ -34,7 +34,7 @@ public class Diretorio {
 		return pasta;
 	}
 
-	static enum ListaDiretorios {
+	public static enum ListaDiretorios {
 
 		ARQUIVOS_SERVIDOR(Opcoes.SERVIDOR, "Arquivos");
 

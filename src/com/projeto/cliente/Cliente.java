@@ -1,5 +1,7 @@
 package com.projeto.cliente;
 
+import java.net.Socket;
+
 import com.projeto.socket.SocketAPI;
 
 /**
@@ -16,8 +18,12 @@ public abstract class Cliente extends SocketAPI {
 
 	public abstract void EnviarArquivo();
 	
+	public abstract void Comandos(String comando, String[] variaveis);
+	
 	protected void ClienteInfo() {
 		EnviarMensagem("CriarCliente/" + this.ip + ":" + this.Porta);
 	}
+	
+	
 	
 }

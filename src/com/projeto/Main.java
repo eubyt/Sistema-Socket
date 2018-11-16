@@ -1,5 +1,6 @@
 package com.projeto;
 
+import java.text.MessageFormat;
 import java.util.Scanner;
 
 import com.projeto.diretorio.Diretorio;
@@ -38,6 +39,8 @@ public class Main extends Util {
 			Carregar(Opcoes.SERVIDOR);
 		else
 			Carregar(Opcoes.CLIENTE);
+		
+		System.out.println(MessageFormat.format("Você escolheu o tipo {0}", _opcao.name()));
 
 		// s.close(); //Removido para evitar erros
 
