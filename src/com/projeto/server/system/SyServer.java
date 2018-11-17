@@ -41,7 +41,7 @@ public class SyServer extends Server {
 
 			AdicionarCliente(socket, new DataCliente(this, socket, variaveis[0]));
 			new UsoLogger("Cliente adicionado {0}", getCliente(socket).endereco).println();
-			;
+			
 
 		}
 
