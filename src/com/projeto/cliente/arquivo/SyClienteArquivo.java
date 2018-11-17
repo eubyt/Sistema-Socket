@@ -17,7 +17,7 @@ import com.projeto.diretorio.Diretorio;
 public class SyClienteArquivo {
 	
 	
-	public static void Quebrar(File arquivo, int numero) {
+	public static void Quebrar(File arquivo, int numero, int manter) {
 		try {
 			FileReader fr = new FileReader(arquivo);
 			long tamanhoTotal = Files.size(arquivo.toPath());
@@ -37,6 +37,8 @@ public class SyClienteArquivo {
 					fw.write(fr.read());
 				}
 				fw.close();
+				if (i != (manter-1))
+					arquivoAtual.delete();
 			}
 			fr.close();
 		} catch (Exception exc) {
@@ -47,7 +49,7 @@ public class SyClienteArquivo {
 	public static void Receber(Socket conexao, String ar) throws IOException {
 
 		DataInputStream input = new DataInputStream(conexao.getInputStream());
-	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	    ByteArrayOutputStream array = new ByteArrayOutputStream();
 		File arquivo = new File(Diretorio.ListaDiretorios.ARQUIVOS_DOWNLOAD.nome + "/"+ ar);
 		StandardOpenOption tipo = null;
 
@@ -61,14 +63,11 @@ public class SyClienteArquivo {
 		byte[] buffer = new byte[8192];
 		int contar;
 
-		
-		
-		
 		while ((contar = input.read(buffer)) > 0) {
-			baos.write(buffer, 0, contar);
+			array.write(buffer, 0, contar);
 		} 
 		
-		Files.write(arquivo.toPath(), baos.toByteArray(), tipo); 
+		Files.write(arquivo.toPath(), array.toByteArray(), tipo); 
 
 	}
 	

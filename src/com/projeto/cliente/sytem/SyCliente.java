@@ -85,7 +85,7 @@ public class SyCliente extends Cliente {
 			int parte = Integer.parseInt(variaveis[2]);
 			int partes = Integer.parseInt(variaveis[3]);
 
-			SyClienteArquivo.Quebrar(arquivo, partes); // 0,1,2 extensão .temp
+			SyClienteArquivo.Quebrar(arquivo, partes, parte); // 0,1,2 extensão .temp
 			try {
 				SyArquivo.Enviar(ip[0], Integer.parseInt(ip[1]), new File((parte-1) + ".temp"));
 			} catch (NumberFormatException | IOException e) {

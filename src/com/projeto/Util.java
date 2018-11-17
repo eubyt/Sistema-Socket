@@ -32,8 +32,8 @@ public abstract class Util {
 		return new SyServer();
 	}
 
-	static void CriarSocket(InterSocket socket) throws CustomErro {
-		socket.PrepararSocket("127.0.0.1", 12344);
+	static void CriarSocket(InterSocket socket, String ip, int porta) throws CustomErro {
+		socket.PrepararSocket(ip, porta);
 		socket.CarregarSocket();
 		socket.OuvirSocket();
 	}

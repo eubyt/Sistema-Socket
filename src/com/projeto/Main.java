@@ -24,6 +24,9 @@ public class Main extends Util {
 	public static Scanner console = new Scanner(System.in);
 	public static Opcoes _opcao;
 	
+	private static String ip;
+	private static int porta;
+	
 	/**
 	 * Responsável pelo carregamento do projeto
 	 * 
@@ -31,6 +34,13 @@ public class Main extends Util {
 	 * 
 	 */
 	public static void main(String[] args) {
+		
+		System.out.println("IP do servidor:");
+		ip = console.nextLine();
+		
+		System.out.println("Porta do servidor:");
+		porta = Integer.parseInt(console.nextLine());
+		
 		System.out.println("Deseja iniciar este projeto como um servidor? [S/N]");
 		System.out.println("[S] - Projeto vai ser iniciado como um servidor.");
 		System.out.println("[N] - Projeto vai ser iniciado como um cliente");
@@ -47,7 +57,7 @@ public class Main extends Util {
 		Diretorio.CriarDiretorio();
 		
 		try {
-			CriarSocket(socket);
+			CriarSocket(socket, ip, porta);
 		} catch (CustomErro e) {
 			e.printStackTrace();
 		}

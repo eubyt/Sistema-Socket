@@ -12,7 +12,7 @@ public class SyArquivo {
 
 	public static void Enviar(String ip, int porta, File arquivo) throws IOException {
 		
-		Socket cliente = new Socket("127.0.0.1", porta);
+		Socket cliente = new Socket(ip, porta);
 		byte[] bytes = new byte[(int) arquivo.length()];
 		BufferedInputStream bytes_arquivo = new BufferedInputStream(new FileInputStream(arquivo));
 		int total = bytes_arquivo.read(bytes, 0, bytes.length);

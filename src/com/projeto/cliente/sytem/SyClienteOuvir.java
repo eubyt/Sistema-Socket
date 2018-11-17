@@ -36,7 +36,7 @@ public class SyClienteOuvir implements Runnable {
 						this.cliente.Comandos(comando, variaveis);
 
 					} else
-						System.out.println(texto);
+						System.out.println(texto.replace(",", "\n"));
 
 				} while (entrada.hasNextLine());
 
