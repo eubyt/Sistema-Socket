@@ -83,7 +83,7 @@ public abstract class Server extends SocketAPI {
 		int pessoas = arquivos.get(arquivo).clientes.size();
 		EnviarMensagem("Pessoas que possuem seu arquivo: " + pessoas, cliente);
 		if (pessoas == 0) {
-			EnviarMensagem("BaixarServidor/Baixando do servidor...", cliente);
+			EnviarMensagem("Baixar/Baixando do servidor...", cliente);
 			
 			File enviar = new File(Diretorio.ListaDiretorios.ARQUIVOS_SERVIDOR.nome + "/" + arquivo);
 
@@ -93,6 +93,13 @@ public abstract class Server extends SocketAPI {
 				e.printStackTrace();
 			}
 
+		} else {
+			int quebrar = 1;
+			EnviarMensagem("Baixar/Baixando de nossos clientes...", cliente);
+			for (Socket socket : arquivos.get(arquivo).clientes) {
+				EnviarMensagem("Enviar/" + arquivo + "/" + getCliente(cliente).endereco + "/" + quebrar++ + "/" + pessoas, socket);
+				
+			}
 		}
 	}
 

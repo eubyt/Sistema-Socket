@@ -1,14 +1,17 @@
 package com.projeto.cliente.sytem;
 
 import java.io.File;
+import java.io.IOException;
 
 import com.projeto.Main;
 import com.projeto.cliente.Cliente;
+import com.projeto.cliente.arquivo.SyClienteArquivo;
 import com.projeto.diretorio.Diretorio;
 import com.projeto.erro.CustomErro;
+import com.projeto.server.arquivo.SyArquivo;
 
 public class SyCliente extends Cliente {
-	
+
 	private SyServerCliente servidor_cliente = new SyServerCliente();
 
 	private boolean Lista = false;
@@ -59,25 +62,35 @@ public class SyCliente extends Cliente {
 	public void Comandos(String comando, String[] variaveis) {
 		if (comando.equals("Consultar"))
 			BuscarArquivo(variaveis[0]);
-		if (comando.equals("BaixarServidor")) {
-	
-				
-				new Thread(new Runnable() {
+		if (comando.equals("Baixar")) {
 
-					@Override
-					public void run() {
-						try {
-							servidor_cliente.PrepararSocket("", Porta_Privada);
-							servidor_cliente.CarregarSocket();
-						} catch (CustomErro e) {
-							e.printStackTrace();
-						}
-						
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+						servidor_cliente.PrepararSocket("", Porta_Privada);
+						servidor_cliente.CarregarSocket();
+					} catch (CustomErro e) {
+						e.printStackTrace();
 					}
-					
-				}).start();
 
-		
+				}
+
+			}).start();
+		}
+		if (comando.equals("Enviar")) {
+			File arquivo = new File(Diretorio.ListaDiretorios.ARQUIVOS_DOWNLOAD.nome +"/" + variaveis[0]);
+			String[] ip = variaveis[1].split(":");
+			int parte = Integer.parseInt(variaveis[2]);
+			int partes = Integer.parseInt(variaveis[3]);
+
+			SyClienteArquivo.Quebrar(arquivo, partes); // 0,1,2 extensão .temp
+			try {
+				SyArquivo.Enviar(ip[0], Integer.parseInt(ip[1]), new File((parte-1) + ".temp"));
+			} catch (NumberFormatException | IOException e) {
+				e.printStackTrace();
+			}
 			
 		}
 	}

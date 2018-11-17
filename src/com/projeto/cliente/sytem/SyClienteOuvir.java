@@ -27,19 +27,16 @@ public class SyClienteOuvir implements Runnable {
 				entrada = new Scanner(input);
 				do {
 
-			
+					String texto = entrada.nextLine();
 
-						String texto = entrada.nextLine();
+					if (texto.contains("/")) {
+						String[] variaveis = texto.split("/");
+						String comando = variaveis[0];
+						variaveis = texto.replace(variaveis[0] + "/", "").split("/");
+						this.cliente.Comandos(comando, variaveis);
 
-						if (texto.contains("/")) {
-							String[] variaveis = texto.split("/");
-							String comando = variaveis[0];
-							variaveis = texto.replace(variaveis[0] + "/", "").split("/");
-							this.cliente.Comandos(comando, variaveis);
-
-						} else
-							System.out.println(texto);
-			
+					} else
+						System.out.println(texto);
 
 				} while (entrada.hasNextLine());
 
