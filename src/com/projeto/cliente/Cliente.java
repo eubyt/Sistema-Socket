@@ -13,23 +13,21 @@ import com.projeto.socket.SocketAPI;
 public abstract class Cliente extends SocketAPI {
 
 	public boolean BaixarServidor = false;
-	
+
 	public int Porta_Privada = new Random().nextInt(12345);
-	
+
 	public static String nome_arquivo;
-	
+
 	public abstract void PrepararCliente();
-	
+
 	public abstract void BuscarArquivo(String nome_arquivo);
 
 	public abstract void EnviarArquivo();
-	
+
 	public abstract void Comandos(String comando, String[] variaveis);
-	
+
 	protected void ClienteInfo() {
 		EnviarMensagem("CriarCliente/" + this.ip + ":" + this.Porta_Privada);
 	}
-	
-	
-	
+
 }

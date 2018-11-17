@@ -17,13 +17,12 @@ public class Diretorio {
 		do {
 			ListaDiretorios valor = lista.next();
 
-			if (valor.opcao.equals(Main._opcao)) 
-				arquivo.put(valor, 	CriarPasta(valor.nome));
-			
+			if (valor.opcao.equals(Main._opcao))
+				arquivo.put(valor, CriarPasta(valor.nome));
 
 		} while (lista.hasNext());
 	}
-	
+
 	public static File getPasta(ListaDiretorios lista) {
 		return arquivo.get(lista);
 	}
@@ -36,8 +35,7 @@ public class Diretorio {
 
 	public static enum ListaDiretorios {
 
-		ARQUIVOS_SERVIDOR(Opcoes.SERVIDOR, "Arquivos"),
-		ARQUIVOS_DOWNLOAD(Opcoes.CLIENTE, "Baixados");
+		ARQUIVOS_SERVIDOR(Opcoes.SERVIDOR, "Arquivos"), ARQUIVOS_DOWNLOAD(Opcoes.CLIENTE, "Baixados");
 
 		protected Opcoes opcao;
 		public String nome;

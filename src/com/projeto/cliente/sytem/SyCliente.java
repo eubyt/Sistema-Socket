@@ -14,8 +14,6 @@ public class SyCliente extends Cliente {
 
 	private SyServerCliente servidor_cliente = new SyServerCliente();
 
-	private boolean Lista = false;
-
 	@Override
 	public void PrepararSocket(String endereco, int porta) {
 		this.Porta = porta;
@@ -55,7 +53,7 @@ public class SyCliente extends Cliente {
 
 		System.out.println("Arquivo solicitado: " + nome_arquivo);
 		this.EnviarMensagem("ProcurarArquivo/" + nome_arquivo);
-		Lista = true;
+
 	}
 
 	@Override
@@ -80,18 +78,18 @@ public class SyCliente extends Cliente {
 			}).start();
 		}
 		if (comando.equals("Enviar")) {
-			File arquivo = new File(Diretorio.ListaDiretorios.ARQUIVOS_DOWNLOAD.nome +"/" + variaveis[0]);
+			File arquivo = new File(Diretorio.ListaDiretorios.ARQUIVOS_DOWNLOAD.nome + "/" + variaveis[0]);
 			String[] ip = variaveis[1].split(":");
 			int parte = Integer.parseInt(variaveis[2]);
 			int partes = Integer.parseInt(variaveis[3]);
 
 			SyClienteArquivo.Quebrar(arquivo, partes, parte); // 0,1,2 extensão .temp
 			try {
-				SyArquivo.Enviar(ip[0], Integer.parseInt(ip[1]), new File((parte-1) + ".temp"));
+				SyArquivo.Enviar(ip[0], Integer.parseInt(ip[1]), new File((parte - 1) + ".temp"));
 			} catch (NumberFormatException | IOException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 	}
 

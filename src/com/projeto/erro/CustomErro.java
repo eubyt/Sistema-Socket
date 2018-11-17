@@ -7,6 +7,5 @@ public class CustomErro extends IOException {
 	public CustomErro(String mensagem) {
 		super(mensagem);
 	}
-	
-	
+
 }

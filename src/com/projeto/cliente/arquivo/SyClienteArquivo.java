@@ -15,8 +15,7 @@ import java.nio.file.StandardOpenOption;
 import com.projeto.diretorio.Diretorio;
 
 public class SyClienteArquivo {
-	
-	
+
 	public static void Quebrar(File arquivo, int numero, int manter) {
 		try {
 			FileReader fr = new FileReader(arquivo);
@@ -37,7 +36,7 @@ public class SyClienteArquivo {
 					fw.write(fr.read());
 				}
 				fw.close();
-				if (i != (manter-1))
+				if (i != (manter - 1))
 					arquivoAtual.delete();
 			}
 			fr.close();
@@ -45,12 +44,12 @@ public class SyClienteArquivo {
 			exc.printStackTrace();
 		}
 	}
-	
+
 	public static void Receber(Socket conexao, String ar) throws IOException {
 
 		DataInputStream input = new DataInputStream(conexao.getInputStream());
-	    ByteArrayOutputStream array = new ByteArrayOutputStream();
-		File arquivo = new File(Diretorio.ListaDiretorios.ARQUIVOS_DOWNLOAD.nome + "/"+ ar);
+		ByteArrayOutputStream array = new ByteArrayOutputStream();
+		File arquivo = new File(Diretorio.ListaDiretorios.ARQUIVOS_DOWNLOAD.nome + "/" + ar);
 		StandardOpenOption tipo = null;
 
 		if (arquivo.exists())
@@ -65,26 +64,25 @@ public class SyClienteArquivo {
 
 		while ((contar = input.read(buffer)) > 0) {
 			array.write(buffer, 0, contar);
-		} 
-		
-		Files.write(arquivo.toPath(), array.toByteArray(), tipo); 
+		}
+
+		Files.write(arquivo.toPath(), array.toByteArray(), tipo);
 
 	}
-	
-	
+
 	private static void CriarArquivo(File arquivo, DataInputStream input) throws IOException {
-		
+
 		DataOutputStream dos = new DataOutputStream(new FileOutputStream(arquivo));
-		
+
 		byte[] buffer = new byte[8192];
 		int contar;
-		
+
 		while ((contar = input.read(buffer)) > 0) {
 			dos.write(buffer, 0, contar);
-		} 
-		
+		}
+
 		dos.close();
-		
+
 	}
 
 }

@@ -11,7 +11,7 @@ import java.net.Socket;
 public class SyArquivo {
 
 	public static void Enviar(String ip, int porta, File arquivo) throws IOException {
-		
+
 		Socket cliente = new Socket(ip, porta);
 		byte[] bytes = new byte[(int) arquivo.length()];
 		BufferedInputStream bytes_arquivo = new BufferedInputStream(new FileInputStream(arquivo));
@@ -21,6 +21,6 @@ public class SyArquivo {
 		enviar.write(bytes, 0, bytes.length);
 		enviar.flush();
 		cliente.close();
-		
+
 	}
 }

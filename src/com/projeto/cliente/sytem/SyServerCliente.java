@@ -22,7 +22,7 @@ public class SyServerCliente implements InterSocket {
 
 	@Override
 	public void CarregarSocket() {
-		while(true) {
+		while (true) {
 			try {
 				SyClienteArquivo.Receber(sv.accept(), SyCliente.nome_arquivo);
 			} catch (IOException e) {

@@ -11,7 +11,7 @@ public class SyServerOuvir implements Runnable {
 	private Server servidor;
 
 	private String separador = "/";
-	
+
 	SyServerOuvir(Socket cliente, Server servidor) {
 		this.cliente = cliente;
 		this.servidor = servidor;
@@ -25,15 +25,14 @@ public class SyServerOuvir implements Runnable {
 			do {
 				String texto = entrada.nextLine();
 				CriarComandos(texto);
-			} while(entrada.hasNextLine());
+			} while (entrada.hasNextLine());
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
-	
+
 	void CriarComandos(String texto) {
 		String[] variaveis = texto.split(separador);
 		String comando = variaveis[0];

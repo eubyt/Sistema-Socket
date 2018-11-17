@@ -8,7 +8,7 @@ import com.projeto.server.DataCliente;
 import com.projeto.server.Server;
 
 public class SyServer extends Server {
-	
+
 	@Override
 	public void PrepararSocket(String endereco, int porta) throws CustomErro {
 
@@ -21,7 +21,7 @@ public class SyServer extends Server {
 
 	@Override
 	public void CarregarSocket() {
-		CriarConexao();		
+		CriarConexao();
 	}
 
 	@Override
@@ -36,31 +36,31 @@ public class SyServer extends Server {
 
 	@Override
 	public void Comandos(Socket socket, String comando, String[] variaveis) {
-		
+
 		if (comando.equals("CriarCliente")) {
-			
+
 			AdicionarCliente(socket, new DataCliente(this, socket, variaveis[0]));
-			new UsoLogger("Cliente adicionado {0}", getCliente(socket).endereco).println();;
-			
+			new UsoLogger("Cliente adicionado {0}", getCliente(socket).endereco).println();
+			;
+
 		}
-		
+
 		if (comando.equals("ProcurarArquivo")) {
 			getCliente(socket).Arquivo = variaveis[0];
 			ConsultarArquivo(socket);
-			
+
 			try {
 				Thread.sleep(2000); // 2 segundos
 				PrepararDownload(socket, variaveis[0]);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-			} 
+			}
 		}
-		
+
 		if (comando.equals("Localizado")) {
 			PossuiArquivo(socket, variaveis[0]);
 		}
-		
+
 	}
-	
 
 }
