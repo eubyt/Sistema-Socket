@@ -1,5 +1,6 @@
 package com.projeto.cliente.sytem;
 
+import java.io.InputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -19,22 +20,27 @@ public class SyClienteOuvir implements Runnable {
 	public void run() {
 
 		do {
+
 			Scanner entrada;
 			try {
-				entrada = new Scanner(servidor.getInputStream());
+				InputStream input = servidor.getInputStream();
+				entrada = new Scanner(input);
 				do {
-					String texto = entrada.nextLine();
-					
-					if (texto.contains("/")) {
-						String[] variaveis = texto.split("/");
-						String comando = variaveis[0];
-						variaveis = texto.replace(variaveis[0] + "/", "").split("/");
-						this.cliente.Comandos(comando, variaveis);
-						
-						
-					} else
-						System.out.println(texto);
-					
+
+			
+
+						String texto = entrada.nextLine();
+
+						if (texto.contains("/")) {
+							String[] variaveis = texto.split("/");
+							String comando = variaveis[0];
+							variaveis = texto.replace(variaveis[0] + "/", "").split("/");
+							this.cliente.Comandos(comando, variaveis);
+
+						} else
+							System.out.println(texto);
+			
+
 				} while (entrada.hasNextLine());
 
 			} catch (Exception e) {

@@ -84,10 +84,11 @@ public abstract class Server extends SocketAPI {
 		EnviarMensagem("Pessoas que possuem seu arquivo: " + pessoas, cliente);
 		if (pessoas == 0) {
 			EnviarMensagem("BaixarServidor/Baixando do servidor...", cliente);
-			File enviar = new File(Diretorio.ListaDiretorios.ARQUIVOS_SERVIDOR + "/" + arquivo);
+			
+			File enviar = new File(Diretorio.ListaDiretorios.ARQUIVOS_SERVIDOR.nome + "/" + arquivo);
 
 			try {
-				SyArquivo.Enviar(cliente, enviar);
+				SyArquivo.Enviar(getCliente(cliente).endereco, getCliente(cliente).porta, enviar);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

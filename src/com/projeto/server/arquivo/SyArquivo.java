@@ -10,7 +10,9 @@ import java.net.Socket;
 
 public class SyArquivo {
 
-	public static void Enviar(Socket cliente, File arquivo) throws IOException {
+	public static void Enviar(String ip, int porta, File arquivo) throws IOException {
+		
+		Socket cliente = new Socket("127.0.0.1", porta);
 		byte[] bytes = new byte[(int) arquivo.length()];
 		BufferedInputStream bytes_arquivo = new BufferedInputStream(new FileInputStream(arquivo));
 		int total = bytes_arquivo.read(bytes, 0, bytes.length);
@@ -18,9 +20,7 @@ public class SyArquivo {
 		OutputStream enviar = cliente.getOutputStream();
 		enviar.write(bytes, 0, bytes.length);
 		enviar.flush();
-		enviar.close();
+		cliente.close();
 		
-		System.out.println(total);
-
 	}
 }

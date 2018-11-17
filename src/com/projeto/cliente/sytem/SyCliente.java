@@ -5,11 +5,11 @@ import java.io.File;
 import com.projeto.Main;
 import com.projeto.cliente.Cliente;
 import com.projeto.diretorio.Diretorio;
+import com.projeto.erro.CustomErro;
 
 public class SyCliente extends Cliente {
-
-	private String nome_arquivo;
-	private SyServerCliente servidor_cliente;
+	
+	private SyServerCliente servidor_cliente = new SyServerCliente();
 
 	private boolean Lista = false;
 
@@ -59,8 +59,27 @@ public class SyCliente extends Cliente {
 	public void Comandos(String comando, String[] variaveis) {
 		if (comando.equals("Consultar"))
 			BuscarArquivo(variaveis[0]);
-		if (comando.equals("BaixarServidor"))
-			this.BaixarServidor = true;
+		if (comando.equals("BaixarServidor")) {
+	
+				
+				new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+						try {
+							servidor_cliente.PrepararSocket("", Porta_Privada);
+							servidor_cliente.CarregarSocket();
+						} catch (CustomErro e) {
+							e.printStackTrace();
+						}
+						
+					}
+					
+				}).start();
+
+		
+			
+		}
 	}
 
 	@Override

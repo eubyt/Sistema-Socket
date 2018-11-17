@@ -1,6 +1,6 @@
 package com.projeto.cliente;
 
-import java.net.Socket;
+import java.util.Random;
 
 import com.projeto.socket.SocketAPI;
 
@@ -12,7 +12,11 @@ import com.projeto.socket.SocketAPI;
  */
 public abstract class Cliente extends SocketAPI {
 
-	protected boolean BaixarServidor = false;
+	public boolean BaixarServidor = false;
+	
+	public int Porta_Privada = new Random().nextInt(12345);
+	
+	public static String nome_arquivo;
 	
 	public abstract void PrepararCliente();
 	
@@ -23,7 +27,7 @@ public abstract class Cliente extends SocketAPI {
 	public abstract void Comandos(String comando, String[] variaveis);
 	
 	protected void ClienteInfo() {
-		EnviarMensagem("CriarCliente/" + this.ip + ":" + this.Porta);
+		EnviarMensagem("CriarCliente/" + this.ip + ":" + this.Porta_Privada);
 	}
 	
 	
