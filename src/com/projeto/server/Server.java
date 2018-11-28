@@ -2,6 +2,7 @@ package com.projeto.server;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Exception;
 import java.net.Socket;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import com.projeto.server.arquivo.SyArquivo;
 import com.projeto.socket.SocketAPI;
 
 /**
- * Classe raiz e de execução das funções do servidor.
+ * Classe raiz e de execuÃ§Ã£o das funÃ§Ãµes do servidor.
  * 
  * @author UnixCF
  * @since 2018-11-14
@@ -27,10 +28,10 @@ public abstract class Server extends SocketAPI {
 	private HashMap<String, ArquivoData> arquivos = new HashMap<String, ArquivoData>();
 
 	/**
-	 * Método de preparo para executar os comandos solicitado pelo cliente
+	 * MÃ©todo de preparo para executar os comandos solicitado pelo cliente
 	 * 
-	 * @param comando   é o nome do comando que o cliente solicitou
-	 * @param variaveis são os sufixos do comando
+	 * @param comando   Ã© o nome do comando que o cliente solicitou
+	 * @param variaveis sÃ£o os sufixos do comando
 	 */
 	public abstract void Comandos(Socket socket, String comando, String[] variaveis);
 
@@ -66,8 +67,13 @@ public abstract class Server extends SocketAPI {
 	}
 
 	protected void EnviarListaDownload(Socket socket) {
+		try {
 		String arquivos = String.join(",", arquivos_download);
 		EnviarMensagem(arquivos, socket);
+			} catch (Exception e) {
+				System.out.println("NÃ£o tem arquivos na pasta...");
+			EnviarMensagem("ERRO: NÃ£o existe arquivos na pasta...", socket);
+			}
 	}
 
 	protected void ConsultarArquivo(Socket socket) {
